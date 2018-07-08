@@ -1,21 +1,45 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {Provider} from 'react-redux';
+import store from './src/store';
+import {Font} from 'expo';
+import AppNavigator from './src/navigation/AppNavigator';
+import { reduxifyNavigator } from 'react-navigation-redux-helpers';
+import { connect } from 'react-redux';
+
+const robotoFont = require('native-base/Fonts/Roboto.ttf');
+const robotoMediumFont = require('native-base/Fonts/Roboto_medium.ttf');
+const ioniconsFont = require ('native-base/Fonts/Ionicons.ttf');
+
+
+const AppWithNav = reduxifyNavigator(AppNavigator, "root");
+const mapStateToProps = (state) => ({
+    state: state.nav,
+});
+const AppWithNavigationState = connect(mapStateToProps)(AppWithNav);
 
 export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
-    );
-  }
+
+    state = {fontLoaded: false};
+
+    async componentWillMount() {
+        await Font.loadAsync({
+            'Roboto': robotoFont,
+            'Roboto_medium': robotoMediumFont,
+            'Ionicons': ioniconsFont
+        });
+        this.setState({fontLoaded: true});
+    }
+
+    render() {
+        if (this.state.fontLoaded) {
+            return (
+                <Provider store={store}>
+                    <AppWithNavigationState />
+                </Provider>
+            );
+        }
+        return null
+    }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+

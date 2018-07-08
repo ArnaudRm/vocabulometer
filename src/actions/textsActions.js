@@ -20,13 +20,20 @@ export const fetchTexts = (userToken = null) => { // TODO get token in redux in 
                     type: FETCH_TEXTS,
                 });
                 res.json()
-                    .then((texts) => {
+                    .then((data) => {
                         console.log(`sucess get texts`);
-                        console.log(texts);
-                        dispatch({
-                            type: FETCH_TEXTS_SUCCESS,
-                            payload: texts,
-                        });
+                        console.log(data);
+                        if(data.status === 200) {
+                            dispatch({
+                                type: FETCH_TEXTS_SUCCESS,
+                                payload: data,
+                            });
+                        }else{
+                            dispatch({
+                                type: FETCH_TEXTS_FAIL,
+                                payload: 'Erreur',
+                            });
+                        }
                     })
                     .catch((e) =>{
                         console.log('fail');

@@ -55,11 +55,10 @@ Ouvrir expo XDE , open existing project, choisir le projet cloné plus tot, puis
 
 **C'est TOUT**
 
-2. **Pour ceux qui utilisent exp CLI:**
+ 2. **Pour ceux qui utilisent exp CLI:**
 
-     cd vocabulometer
-     exp start
+	    cd vocabulometer
+	    exp start
+	Puis dans un autre onglet de terminal :
 
- Puis dans un autre onglet de terminal :
-
-     exp ios
+	    exp ios

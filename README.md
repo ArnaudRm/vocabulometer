@@ -40,10 +40,11 @@ Ouvrir expo XDE , open existing project, choisir le projet cloné plus tot, puis
 
  2. **Pour ceux qui utilisent exp CLI:**
 
-    ` cd vocabulometer`
-    `exp start`
-Puis dans un autre onglet de terminal :
-    `exp android`
+	    cd vocabulometer
+	    exp start
+	Puis dans un autre onglet de terminal :
+
+	    exp android
 
 #### **Sur IOS:**
 Pour lancer le projet sur IOS , vous aurez seulement besoin de Xcode sur MacOSX ( je sais pas si y'a des procédure spécifiques a linux, windows j'en parle pas )
@@ -84,7 +85,7 @@ Le CLI Expo fournit les mêmes fonctionnalités en ligne de commande mais requie
 #### **Sur Android:**
 Sur android, il y existe deux possibilités :
 
- - Utiliser l'émulatr de Android studio
+ - Utiliser l'émulateur de Android studio
  - Utiliser un émulateur Genymotion (conseillé par expo, procédure expliqué ici : https://docs.genymotion.com/latest/Content/01_Get_Started/Installation.htm)
 
 Pour run le projet:
@@ -96,8 +97,8 @@ Ouvrir expo XDE , open existing project, choisir le projet cloné plus tot, puis
 
  2. **Pour ceux qui utilisent exp CLI:**
 
-			cd vocabulometer
-			exp start
+		cd vocabulometer
+		exp start
 
 	Puis dans un autre onglet de terminal :
 

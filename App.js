@@ -1,14 +1,15 @@
 import React from 'react';
 import {Provider} from 'react-redux';
-import store from './src/store';
+import {store, persistor} from './src/store';
 import {Font} from 'expo';
 import AppNavigator from './src/navigation/AppNavigator';
-import { reduxifyNavigator } from 'react-navigation-redux-helpers';
-import { connect } from 'react-redux';
+import {reduxifyNavigator} from 'react-navigation-redux-helpers';
+import {connect} from 'react-redux';
+import {PersistGate} from 'redux-persist/integration/react'
 
 const robotoFont = require('native-base/Fonts/Roboto.ttf');
 const robotoMediumFont = require('native-base/Fonts/Roboto_medium.ttf');
-const ioniconsFont = require ('native-base/Fonts/Ionicons.ttf');
+const ioniconsFont = require('native-base/Fonts/Ionicons.ttf');
 
 
 const AppWithNav = reduxifyNavigator(AppNavigator, "root");
@@ -34,12 +35,12 @@ export default class App extends React.Component {
         if (this.state.fontLoaded) {
             return (
                 <Provider store={store}>
-                    <AppWithNavigationState />
+                    <PersistGate loading={null} persistor={persistor}>
+                        <AppWithNavigationState/>
+                    </PersistGate>
                 </Provider>
             );
         }
         return null
     }
 }
-
-

@@ -4,6 +4,8 @@ import {
     createReactNavigationReduxMiddleware,
 } from 'react-navigation-redux-helpers';
 import reducers from '../reducers';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage' // defaults to localStorage for web and AsyncStorage for react-native
 
 // Note: createReactNavigationReduxMiddleware must be run before reduxifyNavigator
 const middleware = createReactNavigationReduxMiddleware(
@@ -11,10 +13,22 @@ const middleware = createReactNavigationReduxMiddleware(
     state => state.nav,
 );
 
+const persistConfig = {
+    key: 'root',
+    storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, reducers);
+
 const store = createStore(
-    reducers,
+    persistedReducer,
     {},
     compose(applyMiddleware(thunk,middleware))
 );
 
-export default store;
+let persistor = persistStore(store);
+
+export {
+     store,
+    persistor
+}

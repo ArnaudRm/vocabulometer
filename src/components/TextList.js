@@ -12,13 +12,13 @@ import {
 
 export default class TextList extends React.Component {
 
-    renderListItems(){
+    renderListItems() {
         return (
             this.props.texts.map((text) => {
                 return (
                     <ListItem thumbnail key={text.title}>
                         <Left>
-                            <Thumbnail square source={{uri: text.image}}/>
+                            <Thumbnail source={{uri: text.image}}/>
                         </Left>
                         <Body>
                         <Text>{text.title}</Text>
@@ -30,7 +30,7 @@ export default class TextList extends React.Component {
                             </Button>
                         </Right>
                     </ListItem>
-                    )
+                )
             })
         );
     }

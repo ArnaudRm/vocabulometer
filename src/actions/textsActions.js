@@ -10,7 +10,7 @@ export const fetchTexts = (userToken = null) => { // TODO get token in redux in 
 
     return (dispatch) => {
         fetch(`${BASE_URL}/texts` , {
-            method: 'post',
+            method: 'get',
             headers: new Headers({
                 'Authorization': 'Bearer '+ userToken,
             }),

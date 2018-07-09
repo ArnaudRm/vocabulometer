@@ -1,12 +1,11 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import {
-    Text,
     Container,
     Content,
     Spinner,
 } from 'native-base';
-import { fetchTexts } from "../actions";
+import {fetchTexts} from "../actions";
 import TextList from '../components/TextList';
 
 const fakeTexts = [
@@ -30,20 +29,20 @@ const fakeTexts = [
 
 class OtherScreen extends React.Component {
 
-    componentWillMount(){
-        this.props.fetchTexts();
+    componentWillMount() {
+        // this.props.fetchTexts();
     }
 
-    renderContent(){
-        if(this.props.textsLoading){
-            return <Spinner color={"#CECECE"}/>
+    renderContent() {
+        if (this.props.textsLoading) {
+            return <Spinner color={"#CECECE"}/>;
         }
-
         return (
             <Container>
                 <Content padder>
                     <TextList
                         texts={fakeTexts}
+                        // TODO: change with reals texts as soon as we get it from api
                         // texts={this.props.texts}
                     />
                 </Content>
@@ -52,23 +51,29 @@ class OtherScreen extends React.Component {
     }
 
     render() {
-        return this.renderContent();
+        return (
+            <Container>
+                <Content padder>
+                    {this.renderContent()}
+                </Content>
+            </Container>
+        );
     }
 }
 
-const mapStateToProps = ({ text }) => {
-  const {
-      texts,
-      textsLoading,
-  } = text;
-  return {
-      texts,
-      textsLoading,
-  }
+const mapStateToProps = ({text}) => {
+    const {
+        texts,
+        textsLoading,
+    } = text;
+    return {
+        texts,
+        textsLoading,
+    }
 };
 
 const mapDispatchToProps = {
-  fetchTexts,
+    fetchTexts,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(OtherScreen)

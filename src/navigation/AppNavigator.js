@@ -2,13 +2,11 @@ import React from 'react';
 import { createStackNavigator} from 'react-navigation';
 import HomeScreen from '../screens/HomeScreen'
 import OtherScreen from '../screens/OtherScreen';
+import LandingScreen from '../screens/LandingScreen';
+import LoginScreen from "../screens/LoginScreen";
 import {Image} from 'react-native';
-import { reduxifyNavigator } from 'react-navigation-redux-helpers';
-import { connect } from 'react-redux';
 
 const logo = require('../../assets/icon.png');
-
-
 const Logo = () => {
     return (
         <Image
@@ -30,11 +28,22 @@ const HomeStackNavigator = createStackNavigator(
         Other: {
             screen: OtherScreen,
         },
+
+        Landing: {
+            screen: LandingScreen,
+        },
+
+        Login: {
+            screen: LoginScreen,
+            navigationOptions: {
+                headerLeft: null
+            }
+        }
     },
 
     //GLOBAL CONFIG FOR ALL SCREENS
     {
-        initialRouteName: 'Main',
+        initialRouteName: 'Landing',
         navigationOptions: {
             headerTitle: <Logo/>, // Logo instead of header title
             headerStyle: {

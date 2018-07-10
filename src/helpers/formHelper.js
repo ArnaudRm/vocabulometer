@@ -32,8 +32,6 @@ export const renderInput = ({
             >
                 <Label style={styles.label}>{label}</Label>
                 <Input placeholder={placeholder} secureTextEntry={secureTextEntry} {...input}   />
-                {hasError && touched &&  <Icon name='close-circle' />}
-
             </Item>
             {hasError && touched && <Text style={styles.error}>{error}</Text>}
         </View>

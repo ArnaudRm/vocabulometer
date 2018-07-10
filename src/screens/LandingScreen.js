@@ -4,6 +4,7 @@ import {
     Spinner,
 } from 'native-base';
 import {logout} from "../actions";
+import Base64 from '../helpers/atob';
 
 class LandingScreen extends React.Component {
 
@@ -12,17 +13,19 @@ class LandingScreen extends React.Component {
     };
 
     decodeToken = (token) => {
-        return JSON.parse(window.atob(token.split('.')[1].replace('-', '+').replace('_', '/')));
+        return JSON.parse(Base64.atob(token.split('.')[1].replace('-', '+').replace('_', '/')));
     };
 
     isTokenValid = (token) => {
+        console.log(token);
         const claims = this.decodeToken(token);
         const expDate = new Date(parseInt(claims.exp) * 1000);
         return expDate > new Date();
     };
 
     componentDidMount(){
-        if(this.props.token === null ){
+        console.log(this.props);
+        if(!this.props.token){
             this.props.navigation.navigate('Login');
         }else{
             //Check token expired

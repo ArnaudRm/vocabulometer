@@ -5,7 +5,7 @@ import {
     Text,
     Button,
 } from 'native-base';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, ImageBackground } from 'react-native';
 import {connect} from 'react-redux';
 import {reduxForm, Field} from 'redux-form';
 import {renderInput} from '../helpers/formHelper';
@@ -15,6 +15,11 @@ import AppSpinner from '../components/AppSpinner';
 const styles = StyleSheet.create({
     fieldContainer: {
         marginVertical: 32
+    },
+    backgroundLogin: {
+        width: '100%',
+        height: '100%',
+        flex: 1,
     }
 });
 
@@ -61,6 +66,7 @@ class LoginScreen extends React.Component {
     render() {
         return (
             <Container >
+            <ImageBackground source={require('../../assets/background_login.jpg')} style={styles.backgroundLogin}>
                 <Content padder>
                     <Content style={styles.fieldContainer}>
                         <Field
@@ -80,6 +86,7 @@ class LoginScreen extends React.Component {
                     {this.renderButtonOrSpinner()}
                     {this.renderErrorMessage()}
                 </Content>
+                </ImageBackground>
             </Container>
         );
     }

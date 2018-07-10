@@ -36,7 +36,7 @@ const HomeStackNavigator = createStackNavigator(
         Login: {
             screen: LoginScreen,
             navigationOptions: {
-                headerLeft: null
+                header: null
             }
         }
     },

@@ -10,7 +10,7 @@ const styles = {
         color : 'red'
     },
     label:{
-
+        color: '#ffffff'
     }
 };
 

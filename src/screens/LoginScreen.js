@@ -4,6 +4,8 @@ import {
     Content,
     Text,
     Button,
+    Grid,
+    Row
 } from 'native-base';
 import { StyleSheet, ImageBackground } from 'react-native';
 import {connect} from 'react-redux';
@@ -20,6 +22,14 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         flex: 1,
+    },
+    buttonSignIn: {
+        backgroundColor: '#6fb98f'
+    },
+    title: {
+        fontSize: 36,
+        color: '#ffffff',
+        paddingHorizontal: 40
     }
 });
 
@@ -51,8 +61,9 @@ class LoginScreen extends React.Component {
                     rounded
                     disabled={this.props.loginLoading}
                     onPress={this.props.handleSubmit(this.onSubmit)}
+                    style={styles.buttonSignIn}
                 >
-                    <Text>Connexion</Text>
+                    <Text>SIGN IN</Text>
                 </Button>
                 {
                     this.props.loginLoading
@@ -65,19 +76,24 @@ class LoginScreen extends React.Component {
 
     render() {
         return (
-            <Container >
+            <Container>
             <ImageBackground source={require('../../assets/background_login.jpg')} style={styles.backgroundLogin}>
+            <Grid>
+            <Row size={1}></Row>
+            <Row size={2}>
+
                 <Content padder>
+                    <Text style={styles.title}>TRAIN YOUR ENGLISH SKILLS</Text>
                     <Content style={styles.fieldContainer}>
                         <Field
                             component={renderInput}
-                            label="Nom d'utilisateur"
+                            label="Username"
                             floatingLabel
                             name="username"
                         />
                         <Field
                             component={renderInput}
-                            label="Mot de passe"
+                            label="Password"
                             secureTextEntry
                             floatingLabel
                             name="password"
@@ -85,7 +101,10 @@ class LoginScreen extends React.Component {
                     </Content>
                     {this.renderButtonOrSpinner()}
                     {this.renderErrorMessage()}
+
                 </Content>
+                </Row>
+                </Grid>
                 </ImageBackground>
             </Container>
         );
@@ -98,11 +117,11 @@ const validate = (formProps) => {
     const errors = {};
 
     if (!formProps.username) {
-        errors.username = 'Nom d\'utilisateur obligatoire';
+        errors.username = 'Required username';
     }
 
     if (!formProps.password) {
-        errors.password = 'Mot de passe obligatoire';
+        errors.password = 'Required password';
     }
 
     return errors;

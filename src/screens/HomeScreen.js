@@ -59,7 +59,7 @@ export default class HomeScreen extends React.Component {
                         success
                         rounded
                         style={styles.btn}
-                        onPress={() => this.props.navigation.navigate('Other')}
+                        onPress={() => this.props.navigation.navigate('EasyTexts')}
                     >
                         <Icon
                             type="FontAwesome"
@@ -73,7 +73,7 @@ export default class HomeScreen extends React.Component {
                         primary
                         rounded
                         style={styles.btn}
-                        onPress={() => this.props.navigation.navigate('Other')}
+                        onPress={() => this.props.navigation.navigate('RecommendedTexts')}
                     >
                         <Icon
                             type="FontAwesome"
@@ -87,7 +87,7 @@ export default class HomeScreen extends React.Component {
                         danger
                         rounded
                         style={styles.btn}
-                        onPress={() => this.props.navigation.navigate('Other')}
+                        onPress={() => this.props.navigation.navigate('HardTexts')}
                     >
                         <Icon
                             type="FontAwesome"

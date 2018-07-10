@@ -6,26 +6,26 @@ import {
 } from 'native-base';
 import {fetchTexts} from "../actions";
 import TextList from '../components/TextList';
-import AppSpinner from "../components/AppSpinner";
 
-class OtherScreen extends React.Component {
+class HardTextsScreen extends React.Component {
 
     componentWillMount() {
-        this.props.fetchTexts(this.props.token);
+        this.props.fetchTexts(this.props.token, 'hard');
     }
 
     renderContent() {
-
-        return (
-            <Container>
-                <Content padder>
-                    <TextList
-                       // texts={fakeTexts}
-                        texts={this.props.texts}
-                    />
-                </Content>
-            </Container>
-        );
+        if (!this.props.hardTextsLoading) {
+            return (
+                <Container>
+                    <Content padder>
+                        <TextList
+                            // texts={fakeTexts}
+                            texts={this.props.hardTexts}
+                        />
+                    </Content>
+                </Container>
+            );
+        }
     }
 
     render() {
@@ -41,14 +41,14 @@ class OtherScreen extends React.Component {
 
 const mapStateToProps = ({text, user}) => {
     const {
-        texts,
-        textsLoading,
+        hardTexts,
+        hardTextsLoading,
     } = text;
     const { token } = user;
 
     return {
-        texts,
-        textsLoading,
+        hardTexts,
+        hardTextsLoading,
         token,
     }
 };
@@ -57,4 +57,4 @@ const mapDispatchToProps = {
     fetchTexts,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(OtherScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(HardTextsScreen)

@@ -5,8 +5,14 @@ import {
 } from '../actions/types';
 
 const INITIAL_STATE = {
-    texts: [],
-    textsLoading: true,
+    easyTexts: [],
+    hardTexts: [],
+    recommendedTexts: [],
+
+    easyTextsLoading: true,
+    hardTextsLoading: true,
+    recommendedTextsLoading: true,
+
     errorMessage: '',
 };
 
@@ -15,8 +21,18 @@ export default function (state = INITIAL_STATE, action) {
         case FETCH_TEXTS:
             return {...state, textsLoading: true };
         case FETCH_TEXTS_SUCCESS:
-            console.log(action.payload);
-            return {...state, texts: action.payload, textsLoading: false };
+            console.log(action.payload.texts);
+            console.log(action.payload.level);
+            switch(action.payload.level){
+                case 'easy':
+                    return {...state, easyTexts: action.payload.texts, easyTextsLoading: false };
+                case 'hard':
+                    return {...state, hardTexts: action.payload.texts, hardTextsLoading: false };
+                case 'review':
+                    return {...state, recommendedTexts: action.payload.texts, recommendedTextsLoading: false };
+                default:
+                    return { ...state };
+            }
         case FETCH_TEXTS_FAIL:
             return {...state, errorMessage: action.payload , textsLoading: false};
         default:

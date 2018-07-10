@@ -12,8 +12,7 @@ export default class TextList extends React.Component {
 
     renderListItems() {
         return (
-            this.props.texts.map((textObject) => {
-                const { text } = textObject;
+            this.props.texts.map((text) => {
                 return (
                     <ListItem thumbnail key={text.title}>
                         <Body>

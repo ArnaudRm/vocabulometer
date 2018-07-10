@@ -1,7 +1,9 @@
 import React from 'react';
-import { createStackNavigator} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation';
 import HomeScreen from '../screens/HomeScreen'
-import OtherScreen from '../screens/OtherScreen';
+import EasyTextsScreen from '../screens/EasyTextsScreen';
+import HardTextsScreen from '../screens/HardTextsScreen';
+import RecommendedTextsScreen from '../screens/RecommendedTextsScreen';
 import LandingScreen from '../screens/LandingScreen';
 import LoginScreen from "../screens/LoginScreen";
 import {Image} from 'react-native';
@@ -25,8 +27,16 @@ const HomeStackNavigator = createStackNavigator(
             }
         },
 
-        Other: {
-            screen: OtherScreen,
+        EasyTexts: {
+            screen: EasyTextsScreen,
+        },
+
+        HardTexts: {
+            screen: HardTextsScreen,
+        },
+
+        RecommendedTexts: {
+            screen: RecommendedTextsScreen,
         },
 
         Landing: {

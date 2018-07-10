@@ -6,10 +6,26 @@ import {
 
 const BASE_URL = "http://vocabulometer.herokuapp.com/api";
 
-export const fetchTexts = (userToken = null, difficulty = null) => {
+export const fetchTexts = (userToken, difficulty, limit = 20) => {
+
+    let apiEndpoint;
+
+    switch(difficulty){
+        case 'easy':
+            apiEndpoint = `${BASE_URL}/datasets/english/local/recommendation?recommender=easy&limit=${limit}`;
+            break;
+        case 'hard':
+            apiEndpoint = `${BASE_URL}/datasets/english/local/recommendation?recommender=hard&limit=${limit}`;
+            break;
+        case 'review':
+            apiEndpoint = `${BASE_URL}/datasets/english/local/recommendation?recommender=review&limit=${limit}`;
+            break;
+        default:
+            throw new Error ('Miss difficulty argument');
+    }
 
     return (dispatch) => {
-        fetch(`${BASE_URL}/texts?page=${58}` , { // TODO CHANGE PAGE PARAM DEPENDING ON WHAT ?
+        fetch(apiEndpoint , {
             method: 'get',
             headers: new Headers({
                 'Authorization': 'Bearer '+ userToken,
@@ -27,7 +43,10 @@ export const fetchTexts = (userToken = null, difficulty = null) => {
                         if(status === 200) {
                             dispatch({
                                 type: FETCH_TEXTS_SUCCESS,
-                                payload: data.texts,
+                                payload: {
+                                    texts:data.texts,
+                                    level: difficulty
+                                },
                             });
                         }else{
                             dispatch({

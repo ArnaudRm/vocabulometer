@@ -48,7 +48,7 @@ class LandingScreen extends React.Component {
             const exp = new Date(claims.exp);
             console.log(exp);
             //Check token expired
-            const isValid = this.isTokenValid(this.props.token);
+            const isValid = this.isTokenValid(nextProps.token);
             //if token
             if(isValid){
                 this.props.navigation.navigate('Main');

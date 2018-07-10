@@ -19,7 +19,6 @@ export default function (state = INITIAL_STATE, action) {
         case LOGIN_SUCCESS:
             return {...state, token: action.payload.token, user: action.payload.user,  loginLoading: false };
         case LOGIN_FAIL:
-            console.log(action.payload);
             return {...state, errorMessage: action.payload,  loginLoading: false};
         case LOGOUT_SUCCESS:
             return {...state, token: null};

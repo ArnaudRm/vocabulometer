@@ -19,39 +19,6 @@ const redirectLogin =
         routeName: 'Login',
     });
 
-export const logout = (userToken = null) => { // TODO get token in redux in component that calls this fetch and pass is as an argument
-
-    return (dispatch) => {
-        fetch(`${BASE_URL}/users/auth/logout`, {
-            method: 'post',
-            headers: new Headers({
-                'Authorization': 'Bearer ' + userToken,
-            }),
-        })
-            .then((res) => {
-                res.json()
-                    .then((data) => {
-                        console.log(data);
-                        if (data.status === 200) {
-                            console.log(`sucess logout`);
-                            dispatch({
-                                type: LOGOUT_SUCCESS,
-                                payload: data,
-                            });
-                        }
-                    })
-                    .catch((e) => {
-                        console.log('fail');
-                        console.log(e);
-                    })
-            })
-            .catch((e) => {
-                console.log('fail');
-                console.log(e);
-            });
-    }
-};
-
 export const login = ({username, password}) => { // TODO get token in redux in component that calls this fetch and pass is as an argument
 
     const credentials = {
@@ -101,3 +68,24 @@ export const login = ({username, password}) => { // TODO get token in redux in c
             })
     }
 };
+
+export const logout = (userToken) => {
+    return (dispatch) => {
+
+        fetch(`${BASE_URL}/users/auth/logout`, {
+            method: 'post',
+            headers: new Headers({
+                'Authorization': 'Bearer ' + userToken,
+            }),
+        })
+            .then((res) => {
+                if(res.status === 200){
+                    dispatch(redirectLogin);
+                    dispatch({
+                        type: LOGOUT_SUCCESS,
+                    });
+                }
+            })
+            .catch(e => console.log(e));
+    };
+} ;

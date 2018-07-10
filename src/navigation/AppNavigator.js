@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {createStackNavigator} from 'react-navigation';
 import HomeScreen from '../screens/HomeScreen'
 import EasyTextsScreen from '../screens/EasyTextsScreen';
@@ -7,6 +7,7 @@ import RecommendedTextsScreen from '../screens/RecommendedTextsScreen';
 import LandingScreen from '../screens/LandingScreen';
 import LoginScreen from "../screens/LoginScreen";
 import {Image} from 'react-native';
+import RightNav from './RightNav';
 
 const logo = require('../../assets/icon.png');
 const Logo = () => {
@@ -17,6 +18,8 @@ const Logo = () => {
         />
     )
 };
+
+
 
 const HomeStackNavigator = createStackNavigator(
     {
@@ -55,6 +58,7 @@ const HomeStackNavigator = createStackNavigator(
     {
         initialRouteName: 'Landing',
         navigationOptions: {
+            headerRight: <RightNav/>,
             headerTitle: <Logo/>, // Logo instead of header title
             headerStyle: {
                 backgroundColor: '#FFF' // Header black BG color

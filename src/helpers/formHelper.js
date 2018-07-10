@@ -31,7 +31,7 @@ export const renderInput = ({
                 style={{...styles.defaultStyle , style}}
             >
                 <Label style={styles.label}>{label}</Label>
-                <Input placeholder={placeholder} secureTextEntry={secureTextEntry} {...input}   />
+                <Input placeholder={placeholder} secureTextEntry={secureTextEntry} {...input} style={{color:'white'}} />
             </Item>
             {hasError && touched && <Text style={styles.error}>{error}</Text>}
         </View>

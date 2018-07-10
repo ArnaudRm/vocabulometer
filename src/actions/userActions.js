@@ -63,7 +63,7 @@ export const login = ({username, password}) => { // TODO get token in redux in c
                 console.log(e);
                 dispatch({
                     type: LOGIN_FAIL,
-                    payload: 'Identifiants incorrects',
+                    payload: 'Mauvais mot de passe',
                 });
             })
     }

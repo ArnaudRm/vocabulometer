@@ -1,10 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {
-    Spinner,
-} from 'native-base';
-import {logout} from "../actions";
 import Base64 from '../helpers/atob';
+import AppSpinner from "../components/AppSpinner";
 
 class LandingScreen extends React.Component {
 
@@ -41,26 +38,14 @@ class LandingScreen extends React.Component {
 
     componentWillReceiveProps(nextProps){
         // Waiting for redux-persist to redydrate store
-        console.log('ici');
-
         if(!this.props.token && nextProps.token){
-            console.log('ici');
-
-            const claims = this.decodeToken(nextProps.token);
-            console.log(claims);
-            const exp = new Date(claims.exp);
-            console.log(exp);
-            //Check token expired
             const isValid = this.isTokenValid(nextProps.token);
-            //if token
             if(isValid){
                 this.props.navigation.navigate('Main');
             }else{
                 this.props.navigation.navigate('Login');
             }
         }else{
-            console.log('la');
-
             this.props.navigation.navigate('Login');
         }
 
@@ -71,7 +56,7 @@ class LandingScreen extends React.Component {
 
     render() {
         console.log(this.props);
-        return <Spinner color="blue"/>
+        return <AppSpinner/>
     }
 }
 

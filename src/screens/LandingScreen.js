@@ -16,12 +16,19 @@ class LandingScreen extends React.Component {
     };
 
 
+    componentDidMount(){
+        if(this.props.token === null ){
+            this.props.navigation.navigate('Login');
+        }
+    }
+
     componentWillReceiveProps(nextProps){
         // Waiting for redux-persist to redydrate store
-        if(!this.props.token && nextProps.token && !this.state.dataLoaded){
-            this.setState({
-                dataLoaded:true,
-            });
+        console.log('ici');
+
+        if(!this.props.token && nextProps.token){
+            console.log('ici');
+
             const claims = this.decodeToken(nextProps.token);
             console.log(claims);
             //Check token expired
@@ -30,12 +37,18 @@ class LandingScreen extends React.Component {
             //else
             //this.props.navigation.navigate('Login');
         }else{
+            console.log('la');
+
             this.props.navigation.navigate('Login');
         }
+
+        this.setState({
+            dataLoaded:true,
+        });
     }
 
     render() {
-        return <Spinner/>
+        return <Spinner color="blue"/>
     }
 }
 

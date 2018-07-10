@@ -5,10 +5,19 @@ import {
     Text,
     Button,
 } from 'native-base';
+import { StyleSheet } from 'react-native';
 import {connect} from 'react-redux';
 import {reduxForm, Field} from 'redux-form';
 import {renderInput} from '../helpers/formHelper';
 import {login} from '../actions';
+import AppSpinner from '../components/AppSpinner';
+
+const styles = StyleSheet.create({
+    fieldContainer: {
+        marginVertical: 32
+    }
+});
+
 
 class LoginScreen extends React.Component {
 
@@ -19,36 +28,56 @@ class LoginScreen extends React.Component {
     renderErrorMessage() {
         if (this.props.errorMessage) {
             return (
-                <Text>{this.props.errorMessage}</Text>
+                <Content>
+                    <Text>{this.props.errorMessage}</Text>
+                </Content>
             )
         }
+        return null;
+    }
+
+    renderButtonOrSpinner() {
+
+        return (
+            <Content>
+                <Button
+                    full
+                    primary
+                    rounded
+                    disabled={this.props.loginLoading}
+                    onPress={this.props.handleSubmit(this.onSubmit)}
+                >
+                    <Text>Connexion</Text>
+                </Button>
+                {
+                    this.props.loginLoading
+                        ? <AppSpinner/>
+                        : null
+                }
+            </Content>
+        )
     }
 
     render() {
         return (
-            <Container>
+            <Container >
                 <Content padder>
-                    <Field
-                        component={renderInput}
-                        label="Nom d'utilisateur"
-                        floatingLabel
-                        name="username"
-                    />
-                    <Field
-                        component={renderInput}
-                        label="Mot de passe"
-                        secureTextEntry
-                        floatingLabel
-                        name="password"
-                    />
-                    <Button
-                        full
-                        primary
-                        rounded
-                        onPress={this.props.handleSubmit(this.onSubmit)}
-                    >
-                        <Text>Connexion</Text>
-                    </Button>
+                    <Content style={styles.fieldContainer}>
+                        <Field
+                            component={renderInput}
+                            label="Nom d'utilisateur"
+                            floatingLabel
+                            name="username"
+                        />
+                        <Field
+                            component={renderInput}
+                            label="Mot de passe"
+                            secureTextEntry
+                            floatingLabel
+                            name="password"
+                        />
+                    </Content>
+                    {this.renderButtonOrSpinner()}
                     {this.renderErrorMessage()}
                 </Content>
             </Container>
@@ -60,20 +89,17 @@ class LoginScreen extends React.Component {
 const validate = (formProps) => {
 
     const errors = {};
-    console.log('Validate');
 
     if (!formProps.username) {
-        errors.username = 'Faut un username';
+        errors.username = 'Nom d\'utilisateur obligatoire';
     }
 
     if (!formProps.password) {
-        errors.password = 'Faut un password';
+        errors.password = 'Mot de passe obligatoire';
     }
 
-    console.log(errors);
     return errors;
 };
-
 
 LoginScreen = reduxForm({
     form: 'login',
@@ -81,9 +107,14 @@ LoginScreen = reduxForm({
 })(LoginScreen);
 
 const mapStateToProps = ({user}) => {
-    const {errorMessage} = user;
+    const {
+        errorMessage,
+        loginLoading,
+    } = user;
+
     return {
-        errorMessage
+        errorMessage,
+        loginLoading,
     };
 };
 

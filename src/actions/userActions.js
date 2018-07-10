@@ -1,7 +1,8 @@
 import {
     LOGOUT_SUCCESS,
     LOGIN_FAIL,
-    LOGIN_SUCCESS
+    LOGIN,
+    LOGIN_SUCCESS,
 } from '../actions/types';
 import {NavigationActions} from 'react-navigation';
 
@@ -59,6 +60,10 @@ export const login = ({username, password}) => { // TODO get token in redux in c
     };
 
     return (dispatch) => {
+        dispatch({
+            type: LOGIN,
+        });
+
         fetch(`${BASE_URL}/users/auth/local`, {
             method: 'post',
             body: JSON.stringify(credentials),
@@ -66,21 +71,18 @@ export const login = ({username, password}) => { // TODO get token in redux in c
         })
             .then((res) => {
                 if (res.status !== 200) {
-                    // Redirect to login
+                    dispatch(redirectLogin);
+                    console.log('ici 200');
                     dispatch({
                         type: LOGIN_FAIL,
-                        payload: 'Erreur authentification',
+                        payload: 'Identifiants incorrects',
                     });
-                    dispatch(redirectLogin);
-                    throw new Error('Coucou gautier');
+                    //throw new Error ('coucou');
                 } else {
                     return res.json();
                 }
             })
             .then((data) => {
-                console.log(data);
-                console.log(`sucess login`);
-                console.log(data);
                 dispatch({
                     type: LOGIN_SUCCESS,
                     payload: {
@@ -91,12 +93,11 @@ export const login = ({username, password}) => { // TODO get token in redux in c
                 dispatch(navigateToHome);
             })
             .catch((e) => {
+                console.log(e);
                 dispatch({
                     type: LOGIN_FAIL,
-                    payload: 'Erreur login',
+                    payload: 'Identifiants incorrects',
                 });
-                console.log('fail');
-                console.log(e);
             })
     }
 };

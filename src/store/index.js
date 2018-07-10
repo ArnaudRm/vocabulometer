@@ -18,6 +18,11 @@ const persistConfig = {
     storage,
 };
 
+// TODO : ADD NAV REDUCER TO PERSISTENCE BLACK LIST
+// If you persist nav reducer, app will boot on last visited screen and it can be more difficult to manage data fetching.
+// Example : texts fetches are done on listScreen, each text is passed as an object while navigating from list to details.
+// If you boot the app on details, it will crash the app because the object containing the text has'nt been passed during navigation.
+
 const persistedReducer = persistReducer(persistConfig, reducers);
 
 const store = createStore(

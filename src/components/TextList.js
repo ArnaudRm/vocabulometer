@@ -3,8 +3,6 @@ import {
     Text,
     List,
     ListItem,
-    Thumbnail,
-    Left,
     Body,
     Right,
     Button,
@@ -14,27 +12,23 @@ export default class TextList extends React.Component {
 
     renderListItems() {
         return (
-            this.props.texts.map((text) => {
+            this.props.texts.map((textObject) => {
+                const { text } = textObject;
                 return (
                     <ListItem thumbnail key={text.title}>
-                        <Left>
-                            <Thumbnail source={{uri: text.image}}/>
-                        </Left>
                         <Body>
                         <Text>{text.title}</Text>
-                        <Text note numberOfLines={1}>{text.text}</Text>
                         </Body>
                         <Right>
                             <Button transparent>
-                                <Text>Lire plus</Text>
+                                <Text>Read more</Text>
                             </Button>
                         </Right>
                     </ListItem>
-                )
+                );
             })
         );
     }
-
 
     render() {
         return (

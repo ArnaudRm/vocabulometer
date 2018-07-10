@@ -7,7 +7,9 @@ import {
     Content,
     H1,
     H3,
+    Grid,
     Col,
+    Row,
     Icon,
 } from 'native-base';
 
@@ -36,18 +38,20 @@ export default class HomeScreen extends React.Component {
         return (
             <Container>
                 <Content padder contentContainerStyle={styles.container}>
-                    <Col style={styles.title}>
-                        <H1>Hello!</H1>
-                    </Col>
-                    <Col style={styles.subtitle}>
-                        <H3>Bienvenue sur Vocabulometer</H3>
-                    </Col>
-                    <Col style={styles.description}>
-                        <Text>
-                            Vocabulometer a pour objectif d'aider à l'apprentissage de l'anglais en offrant une
-                            plateforme permettant d'enrichir son vocabulaire.
-                        </Text>
-                    </Col>
+                    <Grid style={{minHeight: 256}}>
+                        <Row size={30}>
+                            <H1>Hello!</H1>
+                        </Row>
+                        <Row size={25}>
+                            <H3>Bienvenue sur Vocabulometer</H3>
+                        </Row>
+                        <Row size={45}>
+                            <Text>
+                                Vocabulometer a pour objectif d'aider à l'apprentissage de l'anglais en offrant une
+                                plateforme permettant d'enrichir son vocabulaire.
+                            </Text>
+                        </Row>
+                    </Grid>
 
                     <Button
                         full

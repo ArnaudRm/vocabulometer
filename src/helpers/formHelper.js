@@ -1,15 +1,6 @@
 import React from 'react';
-import { View, Text, TextInput } from 'react-native';
-import { Container, Header, Content, Form, Item, Input, Label } from 'native-base';
-
-const formInputStyle = {
-    borderColor: 'darkgrey',
-    borderBottomWidth: 1,
-    marginHorizontal: 18,
-    paddingVertical: 8,
-    marginBottom: 4,
-    color: 'grey',
-};
+import { View, Text } from 'react-native';
+import { Item, Input, Label, Icon } from 'native-base';
 
 const styles = {
     defaultStyle:{
@@ -17,6 +8,9 @@ const styles = {
     },
     error: {
         color : 'red'
+    },
+    label:{
+
     }
 };
 
@@ -31,12 +25,14 @@ export const renderInput = ({
     return (
         <View>
             <Item
+               // rounded
                 floatingLabel={floatingLabel}
                 error={hasError && touched}
                 style={{...styles.defaultStyle , style}}
             >
-                <Label>{label}</Label>
+                <Label style={styles.label}>{label}</Label>
                 <Input placeholder={placeholder} secureTextEntry={secureTextEntry} {...input}   />
+                {hasError && touched &&  <Icon name='close-circle' />}
 
             </Item>
             {hasError && touched && <Text style={styles.error}>{error}</Text>}

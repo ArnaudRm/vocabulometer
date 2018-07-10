@@ -6,10 +6,10 @@ import {
 
 const BASE_URL = "http://vocabulometer.herokuapp.com/api";
 
-export const fetchTexts = (userToken = null) => { // TODO get token in redux in component that calls this fetch and pass is as an argument
+export const fetchTexts = (userToken = null, difficulty = null) => {
 
     return (dispatch) => {
-        fetch(`${BASE_URL}/texts` , {
+        fetch(`${BASE_URL}/texts?page=${58}` , { // TODO CHANGE PAGE PARAM DEPENDING ON WHAT ?
             method: 'get',
             headers: new Headers({
                 'Authorization': 'Bearer '+ userToken,
@@ -19,14 +19,15 @@ export const fetchTexts = (userToken = null) => { // TODO get token in redux in 
                 dispatch({
                     type: FETCH_TEXTS,
                 });
+                const { status } = res;
                 res.json()
                     .then((data) => {
                         console.log(`sucess get texts`);
-                        console.log(data);
-                        if(data.status === 200) {
+                        console.log(data.texts);
+                        if(status === 200) {
                             dispatch({
                                 type: FETCH_TEXTS_SUCCESS,
-                                payload: data,
+                                payload: data.texts,
                             });
                         }else{
                             dispatch({

@@ -73,7 +73,7 @@ export default class HomeScreen extends React.Component {
                         primary
                         rounded
                         style={styles.btn}
-                        onPress={() => this.props.navigation.navigate('RecommendedTexts')}
+                        onPress={() => this.props.navigation.navigate('RecommendedTexts' )}
                     >
                         <Icon
                             type="FontAwesome"

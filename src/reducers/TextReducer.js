@@ -1,7 +1,7 @@
 import {
     FETCH_TEXTS_SUCCESS,
     FETCH_TEXTS,
-    FETCH_TEXTS_FAIL,
+    FETCH_TEXTS_FAIL, FETCH_SINGLE_TEXT, FETCH_SINGLE_TEXT_SUCCESS, FETCH_SINGLE_TEXT_FAIL,
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -13,6 +13,9 @@ const INITIAL_STATE = {
     hardTextsLoading: true,
     recommendedTextsLoading: true,
 
+    singleText: {},
+    singleTextLoading: true,
+
     errorMessage: '',
 };
 
@@ -21,8 +24,6 @@ export default function (state = INITIAL_STATE, action) {
         case FETCH_TEXTS:
             return {...state, textsLoading: true };
         case FETCH_TEXTS_SUCCESS:
-            console.log(action.payload.texts);
-            console.log(action.payload.level);
             switch(action.payload.level){
                 case 'easy':
                     return {...state, easyTexts: action.payload.texts, easyTextsLoading: false };
@@ -35,6 +36,12 @@ export default function (state = INITIAL_STATE, action) {
             }
         case FETCH_TEXTS_FAIL:
             return {...state, errorMessage: action.payload , textsLoading: false};
+        case FETCH_SINGLE_TEXT:
+            return {...state, singleTextLoading: true};
+        case FETCH_SINGLE_TEXT_SUCCESS:
+            return {...state, singleText: action.payload, singleTextLoading: false};
+        case FETCH_SINGLE_TEXT_FAIL:
+            return {...state, singleTextLoading: false};
         default:
             return state;
     }

@@ -6,6 +6,7 @@ import HardTextsScreen from '../screens/HardTextsScreen';
 import RecommendedTextsScreen from '../screens/RecommendedTextsScreen';
 import LandingScreen from '../screens/LandingScreen';
 import LoginScreen from "../screens/LoginScreen";
+import TextScreen from "../screens/TextScreen";
 import {Image} from 'react-native';
 import RightNav from './RightNav';
 
@@ -40,6 +41,10 @@ const HomeStackNavigator = createStackNavigator(
 
         RecommendedTexts: {
             screen: RecommendedTextsScreen,
+        },
+
+        Text: {
+            screen: TextScreen,
         },
 
         Landing: {

@@ -7,15 +7,7 @@ import {
     Right,
     Button,
 } from 'native-base';
-import {NavigationActions} from "react-navigation";
-import { connect } from 'react-redux';
-
-const navigateToText = (text) => {
-    NavigationActions.navigate({
-        routeName: 'Text',
-        params:text,
-    });
-};
+import {withNavigation} from 'react-navigation';
 
 class TextList extends React.Component {
 
@@ -50,8 +42,5 @@ class TextList extends React.Component {
     }
 }
 
-const mapStateToProps = (state) =>{
-    return {};
-};
 
-export default connect(mapStateToProps)(TextList);
+export default withNavigation(TextList);

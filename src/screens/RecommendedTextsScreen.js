@@ -19,7 +19,6 @@ class RecommendedTextsScreen extends React.Component {
                 <Container>
                     <Content padder>
                         <TextList
-                            navigation={this.props.navigation}
                             texts={this.props.recommendedTexts}
                         />
                     </Content>

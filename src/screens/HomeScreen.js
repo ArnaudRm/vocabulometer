@@ -83,6 +83,7 @@ export default class HomeScreen extends React.Component {
                       <Row size={80}>
                         <Col size={40} >
                           <Button
+                              success
                               style={[styles.btn,styles.btnProfile]}
                           >
                               <Text>My profile</Text>

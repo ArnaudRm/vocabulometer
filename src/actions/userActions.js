@@ -79,7 +79,7 @@ export const logout = (userToken) => {
         })
             .then((res) => {
                 if (res.status === 200) {
-                    dispatch(redirectLogin);
+                    //dispatch(redirectLogin);
                     dispatch({
                         type: LOGOUT_SUCCESS,
                     });

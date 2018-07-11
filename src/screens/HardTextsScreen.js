@@ -19,7 +19,6 @@ class HardTextsScreen extends React.Component {
                 <Container>
                     <Content padder>
                         <TextList
-                            navigation={this.props.navigation}
                             texts={this.props.hardTexts}
                         />
                     </Content>

@@ -51,26 +51,6 @@ class TextScreen extends Component {
         return paragraphs;
     }
 
-    getTextLength() {
-        let textLength = 0;
-        for (const item of this.props.singleText.body) {
-            const paragraph = this.buildParagraph(item);
-            textLength += paragraph.length;
-        }
-        return textLength;
-    }
-
-    renderText(paragraphs) {
-        const text = [];
-        let i = 0;
-        for (const p of paragraphs) {
-            text.push(
-                <Text style={styles.paragraph} key={i++}>{p}</Text>
-            );
-        }
-        return text;
-    }
-
     render() {
         if (this.props.singleTextLoading) {
             return (
@@ -81,9 +61,9 @@ class TextScreen extends Component {
         }
 
         const paragraphs = this.buildText();
-        //Else we render a PageSwiper
         return (
             <PageSwiper
+                initialText={this.props.singleText}
                 navigation={this.props.navigation}
                 data={paragraphs}
                 textTitle={this.props.navigation.state.params.title}

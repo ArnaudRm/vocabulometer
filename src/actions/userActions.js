@@ -8,7 +8,6 @@ import {NavigationActions} from 'react-navigation';
 
 const BASE_URL = "http://vocabulometer.herokuapp.com/api";
 
-
 const navigateToHome =
     NavigationActions.navigate({
         routeName: 'Main',
@@ -79,7 +78,7 @@ export const logout = (userToken) => {
             }),
         })
             .then((res) => {
-                if(res.status === 200){
+                if (res.status === 200) {
                     dispatch(redirectLogin);
                     dispatch({
                         type: LOGOUT_SUCCESS,
@@ -88,4 +87,24 @@ export const logout = (userToken) => {
             })
             .catch(e => console.log(e));
     };
-} ;
+};
+
+export const sendWordsRead = (userToken, words) => {
+    return (dispatch) => {
+
+       // console.log(words);
+        fetch(`${BASE_URL}/users/current/word`, {
+            method: 'post',
+            headers: new Headers({
+                'Authorization': 'Bearer ' + userToken,
+                'content-type': 'application/json'
+            }),
+            body: JSON.stringify({words:words, language:'english'}),
+        })
+            .then((res) => res.json())
+            .then(res => {
+                console.log(res);
+            })
+            .catch(e => console.log(e))
+    };
+};

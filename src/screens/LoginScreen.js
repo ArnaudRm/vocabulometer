@@ -37,10 +37,13 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     title: {
-        fontSize: Platform.OS === 'ios' ? 36 : 30,
+        fontSize: Platform.OS === 'ios' ? 36 : 34,
         color: '#ffffff',
         paddingHorizontal: 40,
         paddingBottom: 32,
+        textShadowColor:'#0d0d0d',
+        textShadowOffset:{width: 2, height: 2},
+        textShadowRadius:15,
     },
     errorMessage: {
         color: '#ffffff',

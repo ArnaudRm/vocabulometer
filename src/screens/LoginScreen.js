@@ -7,14 +7,19 @@ import {
     Grid,
     Row,
     Spinner,
-    StyleProvider
+    StyleProvider,
 } from 'native-base';
+import Circle from 'react-native-progress/Circle';
 import getTheme from '../../native-base-theme/components';
 import platform from '../../native-base-theme/variables/platform';
 import {
+    Platform,
     StyleSheet,
     Keyboard,
     ImageBackground,
+    View,
+    ScrollView,
+    KeyboardAvoidingView,
 } from 'react-native';
 import {connect} from 'react-redux';
 import {reduxForm, Field} from 'redux-form';
@@ -23,7 +28,8 @@ import {login} from '../actions';
 
 const styles = StyleSheet.create({
     fieldContainer: {
-        marginVertical: 32
+        paddingVertical: 32,
+        flex: 1,
     },
     backgroundLogin: {
         width: '100%',
@@ -31,9 +37,10 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     title: {
-        fontSize: 36,
+        fontSize: Platform.OS === 'ios' ? 36 : 30,
         color: '#ffffff',
-        paddingHorizontal: 40
+        paddingHorizontal: 40,
+        paddingBottom: 32,
     },
     errorMessage: {
         color: '#ffffff',
@@ -48,79 +55,78 @@ const styles = StyleSheet.create({
 });
 
 
+
 class LoginScreen extends React.Component {
 
     onSubmit = ({username, password}) => {
         Keyboard.dismiss();
-        console.log(username,password);
         this.props.login({username, password});
     };
 
     renderErrorMessage() {
-        if (this.props.errorMessage) {
-            return (
-                <Content>
-                    <Text style={styles.errorMessage}>{this.props.errorMessage}</Text>
-                </Content>
-            )
+        if (this.props.errorMessage && this.props.submitSucceeded) {
+            return <Text style={styles.errorMessage}>{this.props.errorMessage}</Text>;
         }
         return null;
     }
 
-    renderSpinner() {
-        return (
-            this.props.loginLoading
-                ? <Spinner color="white"/>
-                : null
-        );
-    }
-
     render() {
+
+        console.log(platform);
         return (
             <StyleProvider style={getTheme(platform)}>
 
-                <Container>
-                    <ImageBackground source={require('../../assets/background_login.jpg')}
-                                     style={styles.backgroundLogin}>
-                        <Grid>
-                            <Row size={20} style={{alignItems: 'flex-end', justifyContent: 'center'}}>
-                                {this.renderSpinner()}
-                            </Row>
+                <ImageBackground source={require('../../assets/background_login.jpg')}
+                                 style={styles.backgroundLogin}>
+                    <Content
+                        padder
+                        contentContainerStyle={{
+                            flex: 1,
+                            flexDirection: 'column',
+                            justifyContent: 'flex-end',
+                            paddingBottom: 64,
+                        }}>
+                        <KeyboardAvoidingView
+                            enabled
+                            keyboardVerticalOffset={Platform.ios ? 50 : 24 }
+                            behavior="padding"
 
-                            <Row size={80}>
-                                <Content padder>
-                                    <Content style={styles.fieldContainer}>
-                                        <Text style={styles.title}>TRAIN YOUR ENGLISH SKILLS</Text>
-                                        <Field
-                                            component={renderInput}
-                                            label="Username"
-                                            floatingLabel
-                                            name="username"
-                                        />
-                                        <Field
-                                            component={renderInput}
-                                            label="Password"
-                                            secureTextEntry
-                                            floatingLabel
-                                            name="password"
-                                        />
-                                        <Button
-                                            full
-                                            success
-                                            rounded
-                                            disabled={this.props.loginLoading}
-                                            onPress={this.props.handleSubmit(this.onSubmit)}
-                                            style={styles.buttonSignIn}
-                                        >
-                                            <Text>SIGN IN</Text>
-                                        </Button>
-                                        {this.renderErrorMessage()}
-                                    </Content>
-                                </Content>
-                            </Row>
-                        </Grid>
-                    </ImageBackground>
-                </Container>
+                        >
+
+                            <Text style={styles.title}>TRAIN YOUR ENGLISH SKILLS</Text>
+                            <Field
+                                component={renderInput}
+                                label="Username"
+                                floatingLabel
+                                name="username"
+                            />
+                            <Field
+                                component={renderInput}
+                                label="Password"
+                                secureTextEntry
+                                floatingLabel
+                                name="password"
+                            />
+                            <Button
+                                full
+                                success
+                                rounded
+                                iconRight
+                                disabled={this.props.loginLoading}
+                                onPress={this.props.handleSubmit(this.onSubmit)}
+                                style={styles.buttonSignIn}
+                            >
+                                <Text>SIGN IN</Text>
+                                {
+                                    this.props.loginLoading &&
+                                    <Circle size={30} indeterminate={true} color={platform.brandLight}/>
+                                }
+                            </Button>
+                            {this.renderErrorMessage()}
+                        </KeyboardAvoidingView>
+
+                    </Content>
+                </ImageBackground>
             </StyleProvider>
         );
     }

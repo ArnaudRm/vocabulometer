@@ -6,8 +6,10 @@ import HardTextsScreen from '../screens/HardTextsScreen';
 import RecommendedTextsScreen from '../screens/RecommendedTextsScreen';
 import LandingScreen from '../screens/LandingScreen';
 import LoginScreen from "../screens/LoginScreen";
+import TextScreen from "../screens/TextScreen";
 import {Image} from 'react-native';
 import RightNav from './RightNav';
+import ContactScreen from "../screens/ContactScreen";
 
 const logo = require('../../assets/icon.png');
 const Logo = () => {
@@ -42,6 +44,10 @@ const HomeStackNavigator = createStackNavigator(
             screen: RecommendedTextsScreen,
         },
 
+        Text: {
+            screen: TextScreen,
+        },
+
         Landing: {
             screen: LandingScreen,
         },
@@ -51,7 +57,11 @@ const HomeStackNavigator = createStackNavigator(
             navigationOptions: {
                 header: null
             }
-        }
+        },
+
+        Contact: {
+            screen: ContactScreen,
+        },
     },
 
     //GLOBAL CONFIG FOR ALL SCREENS

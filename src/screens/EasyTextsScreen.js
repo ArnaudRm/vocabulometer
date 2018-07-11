@@ -19,7 +19,7 @@ class EasyTextsScreen extends React.Component {
                 <Container>
                     <Content padder>
                         <TextList
-                            // texts={fakeTexts}
+                            navigation={this.props.navigation}
                             texts={this.props.easyTexts}
                         />
                     </Content>

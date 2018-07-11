@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {fetchSingleText} from '../actions';
 import {connect} from 'react-redux';
 import {H1, Text} from 'native-base';
-import { View, ScrollView, } from 'react-native';
+import {View, ScrollView,} from 'react-native';
 import Circle from 'react-native-progress/Circle';
 import platform from "../../native-base-theme/variables/platform";
 import PageSwiper from '../components/PageSwiper';
@@ -11,7 +11,7 @@ import PageSwiper from '../components/PageSwiper';
 const styles = {
     spinnerContainer: {
         justifyContent: 'center',
-        flex:1,
+        flex: 1,
     },
     paragraph: {
         marginVertical: 8,
@@ -30,40 +30,40 @@ class TextScreen extends Component {
         this.props.fetchSingleText(this.props.token, text.uri);
     }
 
-    buildParagraph(item){
+    buildParagraph(item) {
         let string = '';
-        const { interWords, words } = item;
-        for(let i=0; i < item.words.length ; i++){
+        const {interWords, words} = item;
+        for (let i = 0; i < item.words.length; i++) {
             string += interWords[i];
             string += words[i].raw;
         }
-        string += interWords[interWords.length-1];
+        string += interWords[interWords.length - 1];
 
         return string;
     }
 
-    buildText(){
+    buildText() {
         let paragraphs = [];
-        for(const item of this.props.singleText.body){
+        for (const item of this.props.singleText.body) {
             const paragraph = this.buildParagraph(item);
             paragraphs.push(paragraph);
         }
         return paragraphs;
     }
 
-    getTextLength(){
+    getTextLength() {
         let textLength = 0;
-        for(const item of this.props.singleText.body){
+        for (const item of this.props.singleText.body) {
             const paragraph = this.buildParagraph(item);
             textLength += paragraph.length;
         }
         return textLength;
     }
 
-    renderText(paragraphs){
+    renderText(paragraphs) {
         const text = [];
         let i = 0;
-        for(const p of paragraphs ){
+        for (const p of paragraphs) {
             text.push(
                 <Text style={styles.paragraph} key={i++}>{p}</Text>
             );
@@ -80,15 +80,14 @@ class TextScreen extends Component {
             )
         }
 
-
-       const paragraphs = this.buildText();
+        const paragraphs = this.buildText();
         //Else we render a PageSwiper
         return (
-                 <PageSwiper
-                     navigation={this.props.navigation}
-                     data={paragraphs}
-                     textTitle={this.props.navigation.state.params.title}
-                 />
+            <PageSwiper
+                navigation={this.props.navigation}
+                data={paragraphs}
+                textTitle={this.props.navigation.state.params.title}
+            />
         );
 
     }
@@ -99,7 +98,7 @@ const mapStateToProps = ({text, user}) => {
         singleText,
         singleTextLoading,
     } = text;
-    const { token } = user;
+    const {token} = user;
 
     return {
         singleText,

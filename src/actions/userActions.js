@@ -3,6 +3,7 @@ import {
     LOGIN_FAIL,
     LOGIN,
     LOGIN_SUCCESS,
+    FETCH_USER_INFOS,
 } from '../actions/types';
 import {NavigationActions} from 'react-navigation';
 
@@ -32,8 +33,9 @@ export const login = ({username, password}) => { // TODO get token in redux in c
 
         fetch(`${BASE_URL}/users/auth/local`, {
             method: 'post',
+            mode: 'cors',
             body: JSON.stringify(credentials),
-            headers: {'content-type': 'application/json'}
+            headers: {'content-type': 'application/json'},
         })
             .then((res) => {
                 if (res.status !== 200) {
@@ -49,6 +51,7 @@ export const login = ({username, password}) => { // TODO get token in redux in c
                 }
             })
             .then((data) => {
+                console.log(data.token);
                 dispatch({
                     type: LOGIN_SUCCESS,
                     payload: {
@@ -92,14 +95,14 @@ export const logout = (userToken) => {
 export const sendWordsRead = (userToken, words) => {
     return (dispatch) => {
 
-       // console.log(words);
+        // console.log(words);
         fetch(`${BASE_URL}/users/current/word`, {
             method: 'post',
             headers: new Headers({
                 'Authorization': 'Bearer ' + userToken,
                 'content-type': 'application/json'
             }),
-            body: JSON.stringify({words:words, language:'english'}),
+            body: JSON.stringify({words: words, language: 'english'}),
         })
             .then((res) => res.json())
             .then(res => {
@@ -107,4 +110,60 @@ export const sendWordsRead = (userToken, words) => {
             })
             .catch(e => console.log(e))
     };
+};
+
+
+//TODO FETCH USER SCORE
+export const fetchUserStats = (userToken, wordsLimit = 50000) => {
+    return (dispatch) => {
+        const fetchParams = {
+            method: 'get',
+            headers: new Headers({
+                'Authorization': 'Bearer ' + userToken,
+                'content-type': 'application/json'
+            }),
+        };
+
+        const queryParams = `?limit=${wordsLimit}&language=english`;
+
+        // FETCH TOTAL WORDS READ
+        fetch(`${BASE_URL}/users/current/stats/words_read${queryParams}`, fetchParams)
+            .then((res) => res.json())
+            .then(res => {
+                console.log('FETCH WORDS_READ', res);
+                const wordsRead = res;
+
+
+                fetch(`${BASE_URL}/users/current/stats/new_words_read${queryParams}`, fetchParams)
+                    .then((res) => res.json())
+                    .then(res => {
+                        console.log('FETCH NEW_WORDS_READ', res);
+                        const newWordsRead = res;
+
+
+                        fetch(`${BASE_URL}/users/current/stats/new_recent_words_read${queryParams}`, fetchParams)
+                            .then((res) => res.json())
+                            .then(res => {
+                                console.log('FETCH NEW_RECENTE_WORDS_READ', res);
+
+                                console.log( {
+                                    wordsRead,
+                                    newWordsRead,
+                                    newRecentWordsRead: res
+                                });
+                                dispatch({
+                                    type: FETCH_USER_INFOS,
+                                    payload: {
+                                        wordsRead,
+                                        newWordsRead,
+                                        newRecentWordsRead: res
+                                    }
+                                })
+                            })
+                            .catch(e => console.log(e))
+                    })
+                    .catch(e => console.log(e))
+            })
+            .catch(e => console.log(e))
+    }
 };

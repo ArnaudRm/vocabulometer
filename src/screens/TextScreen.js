@@ -26,7 +26,7 @@ class TextScreen extends Component {
 
     componentDidMount() {
         const text = this.props.navigation.state.params;
-        console.log(text._id);
+        //console.log(text._id);
         this.props.fetchSingleText(this.props.token, text.uri);
     }
 
@@ -44,9 +44,38 @@ class TextScreen extends Component {
 
     buildText() {
         let paragraphs = [];
+        const maxParagraphLength = 750;
         for (const item of this.props.singleText.body) {
             const paragraph = this.buildParagraph(item);
-            paragraphs.push(paragraph);
+
+            if(paragraph.length > maxParagraphLength){
+                let splittedParagraph = paragraph;
+                let charactersRemaining = paragraph.length;
+                while(charactersRemaining > maxParagraphLength){
+
+                 /*   if(splittedParagraph[maxParagraphLength] !== ' ' || splittedParagraph[maxParagraphLength] !== '.'){
+                        let isNextCharacterBlankOrDot = false;
+                        let i = maxParagraphLength + 1;
+                        while(!isNextCharacterBlankOrDot){
+                            if(splittedParagraph[i] === ' ' || splittedParagraph[i] === '.'){
+                                paragraphs.push(splittedParagraph.substr(0,i+1));
+                                splittedParagraph = splittedParagraph.slice(i+1);
+                                charactersRemaining -= i+1;
+                                isNextCharacterBlankOrDot = true;
+                                break;
+                            }
+                            i++;
+                        }
+                    }else{*/
+                        paragraphs.push(splittedParagraph.substr(0,700));
+                        splittedParagraph = splittedParagraph.slice(700);
+                        charactersRemaining -= 700;
+                    //}
+                }
+                paragraphs.push(splittedParagraph);
+            }else{
+                paragraphs.push(paragraph);
+            }
         }
         return paragraphs;
     }

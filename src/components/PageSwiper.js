@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     text: {
         paddingVertical: 8,
         textAlign: 'left',
-        fontSize: 14,
+        fontSize: 15,
         backgroundColor: "transparent"
     },
     pageNumber: {
@@ -35,6 +35,10 @@ const styles = StyleSheet.create({
 });
 
 class DeckSwiperAdvancedExample extends Component {
+
+    state = {
+        cardIndex: 0
+    };
 
     sendWordsRead(){
         const words = this.props.initialText.body.map(paragraph => {
@@ -46,19 +50,32 @@ class DeckSwiperAdvancedExample extends Component {
             finalWordsArray.push(...wordArray);
         }
         let arr = [];
-        console.log(finalWordsArray);
+        //console.log(finalWordsArray);
         arr.push(...finalWordsArray.filter((word,pos,self) => self.indexOf(word) == pos));
-        console.log(arr);
+       // console.log(arr);
         this.props.sendWordsRead(this.props.token, arr);
     }
 
+    onSwiped = (cardIndex,direction) => {
+        this.setState({
+            cardIndex : direction === 'left' ?  cardIndex +1 : cardIndex -1
+        })
+    };
+
     render() {
         const finalData = Array.from(this.props.data);
-        finalData.push('Congrats, You finished the text! Swap this card to go back home');
+        finalData.push('Congrats, You finished the text! Swap to the right to get back to the text list');
+        console.log(this.state.cardIndex);
         return (
             <View style={styles.container}>
                 <Swiper
+                    goBackToPreviousCardOnSwipeRight
+                    disableRightSwipe={this.state.cardIndex === 0}
                     cards={finalData}
+                    onSwipedLeft={ (cardIndex) => this.onSwiped(cardIndex, 'left')}
+                    onSwipedRight={ (cardIndex) => this.onSwiped(cardIndex,'right')}
+                    showSecondCard={false}
+                    cardVerticalMargin={50}
                     renderCard={(card, index) => {
                         return (
                             <ScrollView contentContainerStyle={styles.card}>
@@ -72,14 +89,10 @@ class DeckSwiperAdvancedExample extends Component {
                             </ScrollView>
                         )
                     }}
-                    onSwiped={(cardIndex) => {
-                        console.log(cardIndex)
-                    }}
                     onSwipedAll={() => {
                         this.props.navigation.goBack();
                         this.sendWordsRead();
                     }}
-                    cardIndex={0}
                     backgroundColor={'transparent'}
                     stackSize={this.props.data.length}>
                 </Swiper>

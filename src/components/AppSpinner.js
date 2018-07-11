@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Spinner } from 'native-base';
+import Circle from 'react-native-progress/Circle';
 import commonColor from '../../native-base-theme/variables/commonColor';
 
 class AppSpinner extends Component {
     render(){
         return (
-            <Spinner color={commonColor.brandPrimary}/>
+            <Circle size={30}  indeterminate={true} color={commonColor.brandPrimary}/>
         )
     }
 }

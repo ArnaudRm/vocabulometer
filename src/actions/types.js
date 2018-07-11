@@ -12,3 +12,4 @@ export const LOGOUT_SUCCESS = 'logout_success';
 export const LOGIN_SUCCESS = 'login_sucess';
 export const LOGIN_FAIL = 'login_fail';
 export const LOGIN = 'login';
+export const FETCH_USER_INFOS = 'fetch_user_infos';

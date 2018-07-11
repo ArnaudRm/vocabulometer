@@ -15,7 +15,7 @@ class TextList extends React.Component {
         return (
             this.props.texts.map((text) => {
                 return (
-                    <ListItem thumbnail key={text._id}>
+                    <ListItem noIndent style={{backgroundColor:'white'}} thumbnail key={text._id}>
                         <Body>
                         <Text>{text.title}</Text>
                         </Body>
@@ -35,7 +35,7 @@ class TextList extends React.Component {
 
     render() {
         return (
-            <List>
+            <List noIndent>
                 {this.renderListItems()}
             </List>
         );

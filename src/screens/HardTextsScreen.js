@@ -16,13 +16,9 @@ class HardTextsScreen extends React.Component {
     renderContent() {
         if (!this.props.hardTextsLoading) {
             return (
-                <Container>
-                    <Content padder>
-                        <TextList
-                            texts={this.props.hardTexts}
-                        />
-                    </Content>
-                </Container>
+                <TextList
+                    texts={this.props.hardTexts}
+                />
             );
         }
     }
@@ -30,7 +26,7 @@ class HardTextsScreen extends React.Component {
     render() {
         return (
             <Container>
-                <Content padder>
+                <Content>
                     {this.renderContent()}
                 </Content>
             </Container>
@@ -43,7 +39,7 @@ const mapStateToProps = ({text, user}) => {
         hardTexts,
         hardTextsLoading,
     } = text;
-    const { token } = user;
+    const {token} = user;
 
     return {
         hardTexts,

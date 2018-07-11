@@ -16,13 +16,9 @@ class RecommendedTextsScreen extends React.Component {
     renderContent() {
         if (!this.props.recommendedTextsLoading) {
             return (
-                <Container>
-                    <Content padder>
-                        <TextList
-                            texts={this.props.recommendedTexts}
-                        />
-                    </Content>
-                </Container>
+                <TextList
+                    texts={this.props.recommendedTexts}
+                />
             );
         }
     }
@@ -30,7 +26,7 @@ class RecommendedTextsScreen extends React.Component {
     render() {
         return (
             <Container>
-                <Content padder>
+                <Content>
                     {this.renderContent()}
                 </Content>
             </Container>

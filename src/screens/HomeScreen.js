@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet,Platform} from 'react-native';
 import {
     Button,
     Text,
@@ -89,7 +89,8 @@ export default class HomeScreen extends React.Component {
                               <Text>My profile</Text>
                           </Button>
                         </Col>
-                        <Col size={60} paddingLeft={20}>
+                          <Col size={10}></Col>
+                        <Col size={50}>
                             <Text style={styles.txtStat}>Score:  <Text style={{fontWeight: 'bold'}}>10</Text> points</Text>
                             <Text style={styles.txtStat}>Words read: <Text style={{fontWeight: 'bold'}}>542</Text></Text>
                             <Text style={styles.txtStat}>New words encountered: <Text style={{fontWeight: 'bold'}}>15</Text></Text>

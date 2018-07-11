@@ -14,15 +14,11 @@ class EasyTextsScreen extends React.Component {
     }
 
     renderContent() {
-        if (!this.props.easyTextsLoading){
+        if (!this.props.easyTextsLoading) {
             return (
-                <Container>
-                    <Content padder>
-                        <TextList
-                            texts={this.props.easyTexts}
-                        />
-                    </Content>
-                </Container>
+                <TextList
+                    texts={this.props.easyTexts}
+                />
             );
         }
     }
@@ -30,7 +26,7 @@ class EasyTextsScreen extends React.Component {
     render() {
         return (
             <Container>
-                <Content padder>
+                <Content>
                     {this.renderContent()}
                 </Content>
             </Container>
@@ -43,7 +39,7 @@ const mapStateToProps = ({text, user}) => {
         easyTexts,
         easyTextsLoading,
     } = text;
-    const { token } = user;
+    const {token} = user;
 
     return {
         easyTexts,

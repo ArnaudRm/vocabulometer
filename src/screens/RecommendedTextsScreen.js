@@ -18,6 +18,7 @@ class RecommendedTextsScreen extends React.Component {
             return (
                 <TextList
                     texts={this.props.recommendedTexts}
+                    color="#20B449"
                 />
             );
         }

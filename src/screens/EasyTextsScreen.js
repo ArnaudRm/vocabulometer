@@ -6,6 +6,7 @@ import {
 } from 'native-base';
 import {fetchTexts} from "../actions";
 import TextList from '../components/TextList';
+import AppSpinner from '../components/AppSpinner';
 
 class EasyTextsScreen extends React.Component {
 
@@ -18,9 +19,11 @@ class EasyTextsScreen extends React.Component {
             return (
                 <TextList
                     texts={this.props.easyTexts}
+                    color="#FFD43A"
                 />
             );
         }
+        return <AppSpinner/>
     }
 
     render() {

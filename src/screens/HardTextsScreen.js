@@ -18,6 +18,7 @@ class HardTextsScreen extends React.Component {
             return (
                 <TextList
                     texts={this.props.hardTexts}
+                    color="#FF473A"
                 />
             );
         }

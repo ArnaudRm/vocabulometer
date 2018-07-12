@@ -6,6 +6,8 @@ import {
     Body,
     Right,
     Button,
+    Left,
+    Icon
 } from 'native-base';
 import {withNavigation} from 'react-navigation';
 
@@ -15,18 +17,15 @@ class TextList extends React.Component {
         return (
             this.props.texts.map((text,i) => {
                 return (
-                    <ListItem noIndent style={{backgroundColor:'white'}} thumbnail key={i}>
-                        <Body>
-                        <Text>{text.title}</Text>
-                        </Body>
-                        <Right>
-                            <Button
-                                onPress={() => this.props.navigation.navigate('Text', text)}
-                                transparent
-                            >
-                                <Text>Read more</Text>
-                            </Button>
-                        </Right>
+                    <ListItem noIndent style={{backgroundColor:'white', paddingTop: 15, paddingBottom: 15}} button key={i}
+                        onPress={() => this.props.navigation.navigate('Text', text)}
+                    >
+                      <Left>
+                          <Text>{text.title}</Text>
+                      </Left>
+                      <Right>
+                          <Icon name="chevron-right" type="FontAwesome"/>
+                      </Right>
                     </ListItem>
                 );
             })
@@ -36,6 +35,9 @@ class TextList extends React.Component {
     render() {
         return (
             <List noIndent>
+                <ListItem itemDivider style={{backgroundColor: this.props.color}}>
+                    <Text style={{color: '#ffffff', fontSize: 16}}>Choose a text</Text>
+                </ListItem>
                 {this.renderListItems()}
             </List>
         );

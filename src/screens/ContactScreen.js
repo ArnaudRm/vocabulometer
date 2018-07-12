@@ -31,11 +31,17 @@ const styles = StyleSheet.create({
     txtCurrent: {
       fontSize: 14,
     },
+    txtGlobal: {
+      fontSize: 14,
+      marginBottom: 10,
+      marginTop: 5,
+    },
     itemTeam: {
       width: '100%',
     },
     team: {
       width: '100%',
+      marginBottom: 20,
     }
 });
 
@@ -55,7 +61,7 @@ export default class ContactScreen extends React.Component {
                             </Row>
                             <Row size={20}>
                               <List style={styles.team}>
-                                 <ListItem style={styles.itemTeam}>
+                                 <ListItem>
                                    <Text style={styles.txtCurrent}>Arnaud AYREM</Text>
                                  </ListItem>
                                  <ListItem>
@@ -69,6 +75,12 @@ export default class ContactScreen extends React.Component {
                                  </ListItem>
                               </List>
                             </Row>
+                            <Row size={10}>
+                              <Text style={styles.labelGray}>HISTORY</Text>
+                            </Row>
+                            <Row size={20}>
+                              <Text style={styles.txtGlobal}>The project was to develop the mobile application corresponding to the Vocabulometer project described below.</Text>
+                            </Row>
                           </Grid>
                       </CardItem>
                       <CardItem>
@@ -79,8 +91,30 @@ export default class ContactScreen extends React.Component {
                             <Row size={10}>
                               <Text style={styles.labelGray}>TEAM</Text>
                             </Row>
-                            <Row size={50}>
-                              <Text style={styles.txtCurrent}>This project has been developed by a student from the Intelligent Media Processing laboratory, in the Osaka Prefecture University. </Text>
+                            <Row size={20}>
+                              <List style={styles.team}>
+                                 <ListItem>
+                                   <Text style={styles.txtCurrent}>Olivier AUGEREAU</Text>
+                                 </ListItem>
+                                 <ListItem>
+                                   <Text style={styles.txtCurrent}>Clément JACQUET</Text>
+                                 </ListItem>
+                                 <ListItem>
+                                   <Text style={styles.txtCurrent}>Nicholas JOURNET</Text>
+                                 </ListItem>
+                              </List>
+                            </Row>
+                            <Row size={10}>
+                              <Text style={styles.labelGray}>HISTORY</Text>
+                            </Row>
+                            <Row size={20}>
+                              <Text style={styles.txtGlobal}>This project has been developed by a student from the Intelligent Media Processing laboratory, in the Osaka Prefecture University. </Text>
+                            </Row>
+                            <Row size={20}>
+                              <Text style={styles.txtGlobal}>This website has been created for research purpose, as part of exploring how to use new technology devices such as eye-trackers to enhance people's lives. </Text>
+                            </Row>
+                            <Row size={20}>
+                              <Text style={styles.txtGlobal}>Eye gaze analysis algorithms and some texts are taken from a prototype built by University of Bordeaux students. </Text>
                             </Row>
                           </Grid>
                       </CardItem>

@@ -7,17 +7,23 @@ import RecommendedTextsScreen from '../screens/RecommendedTextsScreen';
 import LandingScreen from '../screens/LandingScreen';
 import LoginScreen from "../screens/LoginScreen";
 import TextScreen from "../screens/TextScreen";
-import {Image} from 'react-native';
+import {Image,Platform,Dimensions,View} from 'react-native';
 import RightNav from './RightNav';
 import ContactScreen from "../screens/ContactScreen";
 import VideoScreen from "../screens/VideoScreen";
 
 const logo = require('../../assets/icon.png');
 const Logo = () => {
+    const { width } = Dimensions.get('window');
     return (
         <Image
             source={logo}
-            style={{height: 30, width: 30}}
+            resizeMode="contain"
+            style={{
+                //marginLeft: Platform.OS === 'ios' ? 0 : width/2 - 45,s
+                height: 30,
+                width: 30,
+            }}
         />
     )
 };
@@ -74,8 +80,9 @@ const HomeStackNavigator = createStackNavigator(
         initialRouteName: 'Landing',
         navigationOptions: {
             headerRight: <RightNav/>,
-            headerTitle: <Logo/>, // Logo instead of header title
+            headerTitle:  <Logo/> , // Logo instead of header title
             headerStyle: {
+
                 backgroundColor: '#FFF' // Header black BG color
             }
         }

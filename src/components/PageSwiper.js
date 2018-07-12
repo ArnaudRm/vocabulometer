@@ -95,6 +95,7 @@ class PageSwiper extends Component {
                     }}
                     backgroundColor={'transparent'}
                     stackSize={this.props.data.length}>
+
                 </Swiper>
             </View>
         );

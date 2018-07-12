@@ -37,6 +37,7 @@ export const fetchTexts = (userToken, difficulty, limit = 20) => {
             .then((res) => {
                 dispatch({
                     type: FETCH_TEXTS,
+                    payload: difficulty,
                 });
                 const {status} = res;
                 res.json()
@@ -52,30 +53,36 @@ export const fetchTexts = (userToken, difficulty, limit = 20) => {
                                 },
                             });
                         } else {
-                            dispatch({
-                                type: FETCH_TEXTS_FAIL,
-                                payload: 'Erreur',
-                            });
+                            fetchTextsFail(dispatch, 'Erreur', difficulty);
                         }
                     })
                     .catch((e) => {
-                        console.log('fail');
-                        console.log(e);
-                        dispatch({
-                            type: FETCH_TEXTS_FAIL,
-                            payload: e,
-                        });
+                        fetchTextsFail(dispatch, 'Erreur', difficulty);
                     })
             })
             .catch((e) => {
-                console.log('fail');
-                console.log(e);
-                dispatch({
-                    type: FETCH_TEXTS_FAIL,
-                    payload: e,
-                });
-            });
+                fetchTextsFail(dispatch, 'Erreur', difficulty);
+            })
     }
+};
+
+export const resetTextState = (level) => {
+    return(dispatch) => {
+        dispatch({
+            type: FETCH_TEXTS,
+            payload:level,
+        });
+    }
+};
+
+const fetchTextsFail = (dispatch, msg, level) => {
+    dispatch({
+        type: FETCH_TEXTS_FAIL,
+        payload: {
+            msg,
+            level
+        }
+    });
 };
 
 export const fetchSingleText = (userToken, textId) => {

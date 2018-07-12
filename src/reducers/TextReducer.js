@@ -22,20 +22,38 @@ const INITIAL_STATE = {
 export default function (state = INITIAL_STATE, action) {
     switch (action.type) {
         case FETCH_TEXTS:
-            return {...state, textsLoading: true };
-        case FETCH_TEXTS_SUCCESS:
-            switch(action.payload.level){
+            switch (action.payload) {
                 case 'easy':
-                    return {...state, easyTexts: action.payload.texts, easyTextsLoading: false };
+                    return {...state, easyTextsLoading: true};
                 case 'hard':
-                    return {...state, hardTexts: action.payload.texts, hardTextsLoading: false };
+                    return {...state, hardTextsLoading: true};
                 case 'review':
-                    return {...state, recommendedTexts: action.payload.texts, recommendedTextsLoading: false };
+                    return {...state, recommendedTextsLoading: true};
                 default:
-                    return { ...state };
+                    return {...state};
+            }
+        case FETCH_TEXTS_SUCCESS:
+            switch (action.payload.level) {
+                case 'easy':
+                    return {...state, easyTexts: action.payload.texts, easyTextsLoading: false};
+                case 'hard':
+                    return {...state, hardTexts: action.payload.texts, hardTextsLoading: false};
+                case 'review':
+                    return {...state, recommendedTexts: action.payload.texts, recommendedTextsLoading: false};
+                default:
+                    return {...state};
             }
         case FETCH_TEXTS_FAIL:
-            return {...state, errorMessage: action.payload , textsLoading: false};
+            switch (action.payload.level) {
+                case 'easy':
+                    return {...state, errorMessage: action.payload.msg, easyTextsLoading: false};
+                case 'hard':
+                    return {...state, errorMessage: action.payload.msg, hardTextsLoading: false};
+                case 'review':
+                    return {...state, errorMessage: action.payload.msg, recommendedTextsLoading: false};
+                default:
+                    return {...state};
+            }
         case FETCH_SINGLE_TEXT:
             return {...state, singleTextLoading: true};
         case FETCH_SINGLE_TEXT_SUCCESS:

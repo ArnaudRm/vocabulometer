@@ -4,7 +4,7 @@ import {
     Container,
     Content,
 } from 'native-base';
-import {fetchTexts} from "../actions";
+import {fetchTexts,resetTextState} from "../actions";
 import TextList from '../components/TextList';
 import AppSpinner from '../components/AppSpinner';
 import BackHandlerWrapper from '../components/BackHandlerWrapper';
@@ -13,6 +13,7 @@ class EasyTextsScreen extends React.Component {
 
     componentWillMount() {
         this.props.fetchTexts(this.props.token, 'easy');
+        this.props.resetTextState('easy');
     }
 
     renderContent() {
@@ -60,6 +61,7 @@ const mapStateToProps = ({text, user}) => {
 
 const mapDispatchToProps = {
     fetchTexts,
+    resetTextState,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(EasyTextsScreen)

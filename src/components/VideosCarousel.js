@@ -11,7 +11,7 @@ class VideosCarousel extends Component {
         return (
             <View>
                 <Image
-                    source={{uri: `https://img.youtube.com/vi/${item.id}/0.jpg`}}
+                    source={{uri: `https://img.youtube.com/vi/${item.youtubeId}/0.jpg`}}
                     style={{
                         width: width,
                         height: 200,

@@ -16,7 +16,7 @@ import {
     Body,
 } from 'native-base';
 import VideosCarousel from '../components/VideosCarousel';
-import {fetchUserStats} from "../actions";
+import {fetchUserStats,fetchVideos} from "../actions";
 import {connect} from "react-redux";
 import AppSpinner from "../components/AppSpinner";
 
@@ -68,17 +68,21 @@ class HomeScreen extends React.Component {
 
     componentWillMount() {
         this.props.fetchUserStats(this.props.token);
+        this.props.fetchVideos(this.props.token);
     }
 
 
     render() {
-        if (this.props.userStatsLoading) {
+        console.log(this.props);
+
+        if (this.props.userStatsLoading || this.props.videosLoading) {
             return (
                 <Container style={{alignItems: 'center', justifyContent: 'center'}}>
                     <AppSpinner/>
                 </Container>
             );
         }
+
 
         return (
             <Container>
@@ -202,7 +206,8 @@ class HomeScreen extends React.Component {
                                 <CardItem>
                                     <VideosCarousel
                                         layout={'tinder'}
-                                        videos={
+                                        videos={this.props.videos}
+                                       /* videos={
                                             [
                                                 {
                                                     id: 'CwMevU8PTmg',
@@ -220,7 +225,7 @@ class HomeScreen extends React.Component {
                                                     title: 'Super video bro',
                                                 },
                                             ]
-                                        }
+                                        }*/
                                     />
                                 </CardItem>
                             </Card>
@@ -240,11 +245,18 @@ const mapStateToProps = (state) => {
         userStatsLoading,
     } = state.user;
 
+    const {
+        videos,
+        videosLoading,
+    } = state.video;
+
     return {
         token,
         user,
         userStatsLoading,
+        videos,
+        videosLoading,
     };
 };
 
-export default connect(mapStateToProps, {fetchUserStats})(HomeScreen)
+export default connect(mapStateToProps, {fetchUserStats, fetchVideos})(HomeScreen)

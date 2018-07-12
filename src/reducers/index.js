@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import TextReducer from './TextReducer';
 import UserReducer from './UserReducer';
+import VideoReducer from "./VideoReducer";
 import { reducer as formReducer } from 'redux-form';
 import {
     createNavigationReducer,
@@ -14,6 +15,7 @@ const appReducer = combineReducers({
     user: UserReducer,
     nav: navReducer,
     form: formReducer,
+    video: VideoReducer,
 });
 
 const rootReducer = (state, action) => {

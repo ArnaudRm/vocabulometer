@@ -9,6 +9,7 @@ import {
 import Swiper from 'react-native-deck-swiper';
 import {connect} from 'react-redux';
 import { sendWordsRead } from '../actions';
+import BackHandler  from '../components/BackHandlerWrapper';
 
 const styles = StyleSheet.create({
     container: {
@@ -68,6 +69,7 @@ class PageSwiper extends Component {
         console.log(this.state.cardIndex);
         return (
             <View style={styles.container}>
+                <BackHandler/>
                 <Swiper
                     goBackToPreviousCardOnSwipeRight
                     disableRightSwipe={this.state.cardIndex === 0}

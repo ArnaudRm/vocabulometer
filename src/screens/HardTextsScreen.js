@@ -6,6 +6,8 @@ import {
 } from 'native-base';
 import {fetchTexts} from "../actions";
 import TextList from '../components/TextList';
+import AppSpinner from '../components/AppSpinner';
+import BackHandlerWrapper from '../components/BackHandlerWrapper';
 
 class HardTextsScreen extends React.Component {
 
@@ -14,19 +16,25 @@ class HardTextsScreen extends React.Component {
     }
 
     renderContent() {
-        if (!this.props.hardTextsLoading) {
+        if (this.props.hardTextsLoading) {
             return (
-                <TextList
-                    texts={this.props.hardTexts}
-                    color="#FF473A"
-                />
+                <Container style={{alignItems: 'center', justifyContent: 'center'}}>
+                    <AppSpinner/>
+                </Container>
             );
         }
+        return (
+            <TextList
+                texts={this.props.hardTexts}
+                color="#FF473A"
+            />
+        );
     }
 
     render() {
         return (
             <Container>
+                <BackHandlerWrapper/>
                 <Content>
                     {this.renderContent()}
                 </Content>

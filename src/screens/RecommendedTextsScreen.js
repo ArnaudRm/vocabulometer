@@ -6,6 +6,8 @@ import {
 } from 'native-base';
 import {fetchTexts} from "../actions";
 import TextList from '../components/TextList';
+import AppSpinner from '../components/AppSpinner';
+import BackHandlerWrapper from '../components/BackHandlerWrapper';
 
 class RecommendedTextsScreen extends React.Component {
 
@@ -14,19 +16,25 @@ class RecommendedTextsScreen extends React.Component {
     }
 
     renderContent() {
-        if (!this.props.recommendedTextsLoading) {
+        if (this.props.recommendedTextsLoading) {
             return (
-                <TextList
-                    texts={this.props.recommendedTexts}
-                    color="#20B449"
-                />
+                <Container style={{alignItems: 'center', justifyContent: 'center'}}>
+                    <AppSpinner/>
+                </Container>
             );
         }
+        return (
+            <TextList
+                texts={this.props.recommendedTexts}
+                color="#20B449"
+            />
+        );
     }
 
     render() {
         return (
             <Container>
+                <BackHandlerWrapper/>
                 <Content>
                     {this.renderContent()}
                 </Content>

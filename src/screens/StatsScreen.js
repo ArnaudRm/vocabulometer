@@ -4,6 +4,7 @@ import BarChart from '../components/BarChart';
 import {Container, Content, H1, Grid, Col, List, ListItem, Card, CardItem} from 'native-base';
 import {fetchUserStats, fetchVideos} from "../actions";
 import {connect} from "react-redux";
+import BackHandlerWrapper from '../components/BackHandlerWrapper';
 
 class StatsScreen extends React.Component {
 
@@ -22,11 +23,11 @@ class StatsScreen extends React.Component {
         const minDate = new Date(maxDate._id) - 24 * 3600 * 1000 * 7;
         arr.sort((a, b) => new Date(a) - new Date(b));
         dates.push(new Date(minDate));
-        data[0] = arr.find((val) => new Date(val._id).getDay() === new Date(minDate).getDay()) || {count:0};
+        data[0] = arr.find((val) => new Date(val._id).getDay() === new Date(minDate).getDay()) || {count: 0};
 
         for (let i = 1; i < 7; i++) {
             dates[i] = new Date(minDate + 24 * 3600 * 1000 * i);
-            data[i] = arr.find((val) => new Date(val._id).getDay() === dates[i].getDay()) || {count:0};
+            data[i] = arr.find((val) => new Date(val._id).getDay() === dates[i].getDay()) || {count: 0};
         }
         const final = data.map((v) => v.count);
         return {
@@ -57,10 +58,10 @@ class StatsScreen extends React.Component {
 
                 <View style={styles.barContainer}>
                     <H1 style={{paddingHorizontal: 8, paddingBottom: 8}}>New recents words read</H1>
-                    <List >
+                    <List>
                         {
-                            newRecentWordsRead.words.slice(0,12).map((item,index) => {
-                                return(
+                            newRecentWordsRead.words.slice(0, 12).map((item, index) => {
+                                return (
                                     <ListItem noIndent style={{backgroundColor: 'white'}} key={index}>
                                         <Text>
                                             {item._id}
@@ -72,7 +73,7 @@ class StatsScreen extends React.Component {
                     </List>
 
                 </View>
-
+                <BackHandlerWrapper/>
             </ScrollView>
         )
     }

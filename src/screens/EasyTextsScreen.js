@@ -7,6 +7,7 @@ import {
 import {fetchTexts} from "../actions";
 import TextList from '../components/TextList';
 import AppSpinner from '../components/AppSpinner';
+import BackHandlerWrapper from '../components/BackHandlerWrapper';
 
 class EasyTextsScreen extends React.Component {
 
@@ -15,20 +16,26 @@ class EasyTextsScreen extends React.Component {
     }
 
     renderContent() {
-        if (!this.props.easyTextsLoading) {
+
+        if (this.props.easyTextsLoading) {
             return (
-                <TextList
-                    texts={this.props.easyTexts}
-                    color="#FFD43A"
-                />
+                <Container style={{alignItems: 'center', justifyContent: 'center'}}>
+                    <AppSpinner/>
+                </Container>
             );
         }
-        return <AppSpinner/>
+        return (
+            <TextList
+                texts={this.props.easyTexts}
+                color="#FFD43A"
+            />
+        );
     }
 
     render() {
         return (
             <Container>
+                <BackHandlerWrapper/>
                 <Content>
                     {this.renderContent()}
                 </Content>

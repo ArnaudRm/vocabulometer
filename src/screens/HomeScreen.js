@@ -73,8 +73,6 @@ class HomeScreen extends React.Component {
 
 
     render() {
-        console.log(this.props);
-
         if (this.props.userStatsLoading || this.props.videosLoading) {
             return (
                 <Container style={{alignItems: 'center', justifyContent: 'center'}}>
@@ -154,26 +152,26 @@ class HomeScreen extends React.Component {
                             <Button
                                 full
                                 style={[styles.btn, styles.btnEasy]}
-                                onPress={() => this.props.navigation.navigate('RecommendedTexts')}
+                                onPress={() => this.props.navigation.navigate('EasyTexts')}
                             >
                                 <Icon
                                     type="FontAwesome"
                                     name='thermometer-empty'
                                 />
-                                <Text>Revise</Text>
+                                <Text>Easy</Text>
                             </Button>
                         </CardItem>
                         <CardItem style={styles.paddingButton}>
                             <Button
                                 full
                                 style={[styles.btn, styles.btnRevise]}
-                                onPress={() => this.props.navigation.navigate('EasyTexts')}
+                                onPress={() => this.props.navigation.navigate('RecommendedTexts')}
                             >
                                 <Icon
                                     type="FontAwesome"
                                     name='thermometer-half'
                                 />
-                                <Text>Easy</Text>
+                                <Text>Revise</Text>
                             </Button>
                         </CardItem>
                         <CardItem style={styles.paddingButton}>

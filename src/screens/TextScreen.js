@@ -5,7 +5,7 @@ import {View} from 'react-native';
 import Circle from 'react-native-progress/Circle';
 import platform from "../../native-base-theme/variables/platform";
 import PageSwiper from '../components/PageSwiper';
-
+import BackHandlerWrapper from '../components/BackHandlerWrapper';
 
 const styles = {
     spinnerContainer: {
@@ -46,32 +46,32 @@ class TextScreen extends Component {
         for (const item of this.props.singleText.body) {
             const paragraph = this.buildParagraph(item);
 
-            if(paragraph.length > maxParagraphLength){
+            if (paragraph.length > maxParagraphLength) {
                 let splittedParagraph = paragraph;
                 let charactersRemaining = paragraph.length;
-                while(charactersRemaining > maxParagraphLength){
+                while (charactersRemaining > maxParagraphLength) {
 
-                    if(splittedParagraph[maxParagraphLength] !== ' ' || splittedParagraph[maxParagraphLength] !== '.'){
+                    if (splittedParagraph[maxParagraphLength] !== ' ' || splittedParagraph[maxParagraphLength] !== '.') {
                         let isNextCharacterBlankOrDot = false;
                         let i = maxParagraphLength + 1;
-                        while(!isNextCharacterBlankOrDot){
-                            if(splittedParagraph[i] === ' ' || splittedParagraph[i] === '.'){
-                                paragraphs.push(splittedParagraph.substr(0,i+1));
-                                splittedParagraph = splittedParagraph.slice(i+1);
-                                charactersRemaining -= i+1;
+                        while (!isNextCharacterBlankOrDot) {
+                            if (splittedParagraph[i] === ' ' || splittedParagraph[i] === '.') {
+                                paragraphs.push(splittedParagraph.substr(0, i + 1));
+                                splittedParagraph = splittedParagraph.slice(i + 1);
+                                charactersRemaining -= i + 1;
                                 isNextCharacterBlankOrDot = true;
                                 break;
                             }
                             i++;
                         }
-                    }else{
-                        paragraphs.push(splittedParagraph.substr(0,700));
+                    } else {
+                        paragraphs.push(splittedParagraph.substr(0, 700));
                         splittedParagraph = splittedParagraph.slice(700);
                         charactersRemaining -= 700;
                     }
                 }
                 paragraphs.push(splittedParagraph);
-            }else{
+            } else {
                 paragraphs.push(paragraph);
             }
         }
@@ -89,12 +89,12 @@ class TextScreen extends Component {
 
         const paragraphs = this.buildText();
         return (
-            <PageSwiper
-                initialText={this.props.singleText}
-                navigation={this.props.navigation}
-                data={paragraphs}
-                textTitle={this.props.navigation.state.params.title}
-            />
+                <PageSwiper
+                    initialText={this.props.singleText}
+                    navigation={this.props.navigation}
+                    data={paragraphs}
+                    textTitle={this.props.navigation.state.params.title}
+                />
         );
 
     }

@@ -1,5 +1,6 @@
 import React from 'react';
 import {Provider} from 'react-redux';
+import {BackHandler} from 'react-native';
 import {store, persistor} from './src/store';
 import {Font} from 'expo';
 import AppNavigator from './src/navigation/AppNavigator';
@@ -19,7 +20,6 @@ const mapStateToProps = (state) => ({
 const AppWithNavigationState = connect(mapStateToProps)(AppWithNav);
 
 export default class App extends React.Component {
-
     state = {fontLoaded: false};
 
     async componentWillMount() {

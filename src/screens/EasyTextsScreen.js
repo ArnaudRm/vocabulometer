@@ -27,7 +27,7 @@ class EasyTextsScreen extends React.Component {
         return (
             <TextList
                 texts={this.props.easyTexts}
-                color="#FFD43A"
+                color="#20B449"
             />
         );
     }

@@ -11,6 +11,7 @@ import {Image,Platform,Dimensions,View} from 'react-native';
 import RightNav from './RightNav';
 import ContactScreen from "../screens/ContactScreen";
 import VideoScreen from "../screens/VideoScreen";
+import StatsScreen from "../screens/StatsScreen";
 
 const logo = require('../../assets/icon.png');
 const Logo = () => {
@@ -68,6 +69,10 @@ const HomeStackNavigator = createStackNavigator(
             navigationOptions: {
                 header: null
             }
+        },
+
+        Stats: {
+            screen: StatsScreen,
         },
 
         Contact: {

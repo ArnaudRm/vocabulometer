@@ -105,6 +105,7 @@ class HomeScreen extends React.Component {
                                     <Button
                                         success
                                         style={styles.btnProfile}
+                                        onPress={() => this.props.navigation.navigate('Stats')}
                                     >
                                         <Text>My profile</Text>
                                     </Button>

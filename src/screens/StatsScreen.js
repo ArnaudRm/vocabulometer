@@ -11,25 +11,36 @@ class StatsScreen extends React.Component {
     buildDates(arr) {
         const dates = [];
         const data = [];
-        const maxDate = arr.days.reduce((acc, current) => {
-            if (new Date(current._id) > new Date(acc._id))
-                return current;
-            else
-                return acc;
-        });
+        let final = [0, 0];
 
-        arr = arr.days
+        if (arr.days.length > 0) {
+            const maxDate = arr.days.reduce((acc, current) => {
+                if (new Date(current._id) > new Date(acc._id))
+                    return current;
+                else
+                    return acc;
+            });
 
-        const minDate = new Date(maxDate._id) - 24 * 3600 * 1000 * 7;
-        arr.sort((a, b) => new Date(a) - new Date(b));
-        dates.push(new Date(minDate));
-        data[0] = arr.find((val) => new Date(val._id).getDay() === new Date(minDate).getDay()) || {count: 0};
+            arr = arr.days
 
-        for (let i = 1; i < 7; i++) {
-            dates[i] = new Date(minDate + 24 * 3600 * 1000 * i);
-            data[i] = arr.find((val) => new Date(val._id).getDay() === dates[i].getDay()) || {count: 0};
+            const minDate = new Date(maxDate._id) - 24 * 3600 * 1000 * 7;
+            arr.sort((a, b) => new Date(a) - new Date(b));
+            dates.push(new Date(minDate));
+            data[0] = arr.find((val) => new Date(val._id).getDay() === new Date(minDate).getDay()) || {count: 0};
+
+            for (let i = 1; i < 7; i++) {
+                dates[i] = new Date(minDate + 24 * 3600 * 1000 * i);
+                data[i] = arr.find((val) => new Date(val._id).getDay() === dates[i].getDay()) || {count: 0};
+            }
+            final = data.map((v) => v.count);
+
+        } else {
+            for (let i = 6; i >= 0; i--) {
+                const timestampDate = new Date() - (24 * 3600 * 1000 * i);
+                dates[i] = new Date(timestampDate);
+            }
         }
-        const final = data.map((v) => v.count);
+
         return {
             dates,
             final,
@@ -57,7 +68,11 @@ class StatsScreen extends React.Component {
                 </View>
 
                 <View style={styles.barContainer}>
-                    <H1 style={{paddingHorizontal: 8, paddingBottom: 8}}>New recents words read</H1>
+                    {
+                        newRecentWordsRead.words.length > 0
+                            ? <H1 style={{paddingHorizontal: 8, paddingBottom: 8}}>New recents words read</H1>
+                            : null
+                    }
                     <List>
                         {
                             newRecentWordsRead.words.slice(0, 12).map((item, index) => {

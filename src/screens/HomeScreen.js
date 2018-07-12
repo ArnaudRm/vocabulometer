@@ -16,7 +16,7 @@ import {
     Body,
 } from 'native-base';
 import VideosCarousel from '../components/VideosCarousel';
-import {fetchUserStats,fetchVideos} from "../actions";
+import {fetchUserStats, fetchVideos} from "../actions";
 import {connect} from "react-redux";
 import AppSpinner from "../components/AppSpinner";
 
@@ -71,6 +71,23 @@ class HomeScreen extends React.Component {
         this.props.fetchVideos(this.props.token);
     }
 
+    getWordsReadCount() {
+        const {wordsRead} = this.props.user;
+        let count = 0;
+        if(wordsRead.days.length > 0){
+            count = wordsRead.days.map((day) => day.count ).reduce((acc,current) => acc + current);
+        }
+        return count;
+    }
+
+    getNewWordsReadCount() {
+        const {newWordsRead} = this.props.user;
+        let count = 0;
+        if(newWordsRead.days.length > 0){
+            count = newWordsRead.days.map((day) => day.count ).reduce((acc,current) => acc + current);
+        }
+        return count;
+    }
 
     render() {
         if (this.props.userStatsLoading || this.props.videosLoading) {
@@ -80,7 +97,6 @@ class HomeScreen extends React.Component {
                 </Container>
             );
         }
-
 
         return (
             <Container>
@@ -109,19 +125,19 @@ class HomeScreen extends React.Component {
                                     </Button>
                                 </Col>
                                 <Col size={60}>
-                                    <Text style={styles.txtStat}>Score: <Text
-                                        style={{fontWeight: 'bold'}}>10</Text> points</Text>
+                                 {/*   <Text style={styles.txtStat}>Score: <Text
+                                        style={{fontWeight: 'bold'}}>10</Text> points</Text>*/}
                                     <Text style={styles.txtStat}>
                                         Words read:
                                         <Text
                                             style={{fontWeight: 'bold'}}>
-                                            {this.props.user.wordsRead.days[0] ? this.props.user.wordsRead.days[0].count : 0}
+                                            {this.getWordsReadCount()}
                                         </Text>
                                     </Text>
                                     <Text style={styles.txtStat}>
                                         New words encountered:
                                         <Text style={{fontWeight: 'bold'}}>
-                                            {this.props.user.newWordsRead.days[0] ? this.props.user.newWordsRead.days[0].count : 0}
+                                            {this.getNewWordsReadCount()}
                                         </Text>
                                     </Text>
                                     <Text style={styles.txtStat}>
@@ -206,25 +222,25 @@ class HomeScreen extends React.Component {
                                     <VideosCarousel
                                         layout={'tinder'}
                                         videos={this.props.videos}
-                                       /* videos={
-                                            [
-                                                {
-                                                    id: 'CwMevU8PTmg',
-                                                    uri: 'https://www.youtube.com/watch?v=ruy7cjTNG6U',
-                                                    title: 'Super video bro',
-                                                },
-                                                {
-                                                    id: 'UyoYf7rZVGI',
-                                                    uri: 'https://www.youtube.com/watch?v=UyoYf7rZVGI',
-                                                    title: 'Super video bro',
-                                                },
-                                                {
-                                                    id: '2sML2bq_WGw',
-                                                    uri: 'https://www.youtube.com/watch?v=2sML2bq_WGw',
-                                                    title: 'Super video bro',
-                                                },
-                                            ]
-                                        }*/
+                                        /* videos={
+                                             [
+                                                 {
+                                                     id: 'CwMevU8PTmg',
+                                                     uri: 'https://www.youtube.com/watch?v=ruy7cjTNG6U',
+                                                     title: 'Super video bro',
+                                                 },
+                                                 {
+                                                     id: 'UyoYf7rZVGI',
+                                                     uri: 'https://www.youtube.com/watch?v=UyoYf7rZVGI',
+                                                     title: 'Super video bro',
+                                                 },
+                                                 {
+                                                     id: '2sML2bq_WGw',
+                                                     uri: 'https://www.youtube.com/watch?v=2sML2bq_WGw',
+                                                     title: 'Super video bro',
+                                                 },
+                                             ]
+                                         }*/
                                     />
                                 </CardItem>
                             </Card>

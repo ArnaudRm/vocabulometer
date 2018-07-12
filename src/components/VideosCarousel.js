@@ -38,7 +38,7 @@ class VideosCarousel extends Component {
                     }}
                     onPress={() => this.props.navigation.navigate('Video', item)}
                 >
-                    <Text>WHATCH IT</Text>
+                    <Text>WATCH IT</Text>
                     <Icon name="play" type="Feather"/>
                 </Button>
             </View>

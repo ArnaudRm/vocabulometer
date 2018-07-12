@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View, ScrollView, Text} from 'react-native';
 import BarChart from '../components/BarChart';
-import {Container, Content, H1, Grid, Col, List, ListItem,} from 'native-base';
+import {Container, Content, H1, Grid, Col, List, ListItem, Card, CardItem} from 'native-base';
 import {fetchUserStats, fetchVideos} from "../actions";
 import {connect} from "react-redux";
 
@@ -45,18 +45,18 @@ class StatsScreen extends React.Component {
         const newWordsReadData = this.buildDates(newWordsRead).final;
 
         return (
-            <ScrollView>
+            <ScrollView style={{padding: 10}}>
                 <View style={styles.barContainer}>
-                    <H1>Words read</H1>
+                    <H1 style={{paddingHorizontal: 8, paddingBottom: 8}}>Words read</H1>
                     <BarChart dates={wordsReadDates} data={wordsReadData}/>
                 </View>
                 <View style={styles.barContainer}>
-                    <H1>New words read</H1>
+                    <H1 style={{paddingHorizontal: 8, paddingBottom: 8}}>New words read</H1>
                     <BarChart dates={newWordsReadDates} data={newWordsReadData}/>
                 </View>
 
                 <View style={styles.barContainer}>
-                    <H1>New recents words read</H1>
+                    <H1 style={{paddingHorizontal: 8, paddingBottom: 8}}>New recents words read</H1>
                     <List >
                         {
                             newRecentWordsRead.words.slice(0,12).map((item,index) => {
@@ -72,6 +72,7 @@ class StatsScreen extends React.Component {
                     </List>
 
                 </View>
+
             </ScrollView>
         )
     }
@@ -97,4 +98,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(StatsScreen)
-

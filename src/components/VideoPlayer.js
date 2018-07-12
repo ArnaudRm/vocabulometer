@@ -11,7 +11,7 @@ export default class App extends React.Component {
                 style={{height, width}}
                 javaScriptEnabled={true}
                 domStorageEnabled={true}
-                source={{uri: 'https://www.youtube.com/embed/' + this.props.id}}
+                source={{uri: 'https://www.youtube.com/embed/' + this.props.youtubeId}}
             />
         );
     }

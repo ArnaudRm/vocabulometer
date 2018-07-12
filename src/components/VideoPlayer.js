@@ -1,7 +1,7 @@
 import React from 'react';
 import {Dimensions, WebView} from 'react-native';
 
-export default class App extends React.Component {
+export default class VideoPlayer extends React.Component {
 
     render() {
         const {width, height} = Dimensions.get('window');
@@ -11,7 +11,7 @@ export default class App extends React.Component {
                 style={{height, width}}
                 javaScriptEnabled={true}
                 domStorageEnabled={true}
-                source={{uri: 'https://www.youtube.com/embed/' + this.props.youtubeId}}
+                source={{uri: 'https://www.youtube.com/embed/' + this.props.id}}
             />
         );
     }

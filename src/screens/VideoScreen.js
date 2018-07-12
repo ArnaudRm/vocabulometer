@@ -12,7 +12,7 @@ export default class VideoScreen extends React.Component {
             <Container>
                 <Content>
                     <VideoPlayer
-                        id={video.id}
+                        id={video.youtubeId}
                         uri={video.uri}
                     />
                 </Content>

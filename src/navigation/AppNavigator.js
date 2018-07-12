@@ -7,29 +7,11 @@ import RecommendedTextsScreen from '../screens/RecommendedTextsScreen';
 import LandingScreen from '../screens/LandingScreen';
 import LoginScreen from "../screens/LoginScreen";
 import TextScreen from "../screens/TextScreen";
-import {Image,Platform,Dimensions,View} from 'react-native';
 import RightNav from './RightNav';
 import ContactScreen from "../screens/ContactScreen";
 import VideoScreen from "../screens/VideoScreen";
 import StatsScreen from "../screens/StatsScreen";
-
-const logo = require('../../assets/icon.png');
-const Logo = () => {
-    const { width } = Dimensions.get('window');
-    return (
-        <Image
-            source={logo}
-            resizeMode="contain"
-            style={{
-                //marginLeft: Platform.OS === 'ios' ? 0 : width/2 - 45,s
-                height: 30,
-                width: 30,
-            }}
-        />
-    )
-};
-
-
+import Logo from './Logo';
 
 const HomeStackNavigator = createStackNavigator(
     {

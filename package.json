@@ -10,6 +10,7 @@
     "react-native-deck-swiper": "^1.5.17",
     "react-native-progress": "^3.5.0",
     "react-native-snap-carousel": "^3.7.2",
+    "react-native-svg-charts": "^5.2.0",
     "react-navigation": "^2.6.2",
     "react-navigation-redux-helpers": "^2.0.0-beta",
     "react-redux": "^5.0.7",

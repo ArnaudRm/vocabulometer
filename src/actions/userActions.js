@@ -114,7 +114,7 @@ export const sendWordsRead = (userToken, words) => {
 
 
 //TODO FETCH USER SCORE
-export const fetchUserStats = (userToken, wordsLimit = 50000) => {
+export const fetchUserStats = (userToken, wordsLimit = 500) => {
     return (dispatch) => {
         const fetchParams = {
             method: 'get',

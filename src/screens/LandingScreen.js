@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Base64 from '../helpers/atob';
 import AppSpinner from "../components/AppSpinner";
+import { Container } from 'native-base';
 
 class LandingScreen extends React.Component {
 
@@ -20,49 +21,51 @@ class LandingScreen extends React.Component {
         return expDate > new Date();
     };
 
-    componentDidMount(){
-        console.log(this.props);
-        if(!this.props.token){
+    componentDidMount() {
+        if (!this.props.token) {
             this.props.navigation.navigate('Login');
-        }else{
+        } else {
             //Check token expired
             const isValid = this.isTokenValid(this.props.token);
             //if token
-            if(isValid){
+            if (isValid) {
                 this.props.navigation.navigate('Main');
-            }else{
+            } else {
                 this.props.navigation.navigate('Login');
             }
         }
     }
 
-    componentWillReceiveProps(nextProps){
+    componentWillReceiveProps(nextProps) {
         // Waiting for redux-persist to redydrate store
-        if(!this.props.token && nextProps.token){
+        if (!this.props.token && nextProps.token) {
             const isValid = this.isTokenValid(nextProps.token);
-            if(isValid){
+            if (isValid) {
                 this.props.navigation.navigate('Main');
-            }else{
+            } else {
                 this.props.navigation.navigate('Login');
             }
-        }else{
+        } else {
             this.props.navigation.navigate('Login');
         }
 
         this.setState({
-            dataLoaded:true,
+            dataLoaded: true,
         });
     }
 
     render() {
-        console.log(this.props);
-        return <AppSpinner/>
+        return (
+            <Container style={{alignItems: 'center', justifyContent: 'center'}}>
+                <AppSpinner/>
+            </Container>
+        )
     }
 }
 
 const mapStateToProps = ({user}) => {
-    const { token } = user;
-    return { token };
+    const {token} = user;
+    return {token};
 };
 
 export default connect(mapStateToProps)(LandingScreen)

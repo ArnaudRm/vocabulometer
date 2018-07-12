@@ -12,6 +12,8 @@ import ContactScreen from "../screens/ContactScreen";
 import VideoScreen from "../screens/VideoScreen";
 import StatsScreen from "../screens/StatsScreen";
 import Logo from './Logo';
+import BackButton from './BackButton';
+
 
 const HomeStackNavigator = createStackNavigator(
     {
@@ -67,11 +69,11 @@ const HomeStackNavigator = createStackNavigator(
         initialRouteName: 'Landing',
         navigationOptions: {
             headerRight: <RightNav/>,
-            headerTitle:  <Logo/> , // Logo instead of header title
+            headerTitle: <Logo/>, // Logo instead of header title
+            headerLeft: <BackButton/>,
             headerStyle: {
-
-                backgroundColor: '#FFF' // Header black BG color
-            }
+                backgroundColor: '#FFF'
+            },
         }
     },
 );

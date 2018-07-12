@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {
     Image,
+    Platform,
 } from 'react-native';
 import { Button } from 'native-base';
 import { withNavigation } from 'react-navigation';
@@ -17,10 +18,10 @@ class Logo extends React.Component {
                     style={{
                         height: 30,
                         width: 30,
+                        marginTop: Platform.OS === 'android' ? 6 : 0,
                     }}
                 />
             </Button>
-
         )
     }
 }

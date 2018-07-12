@@ -10,6 +10,7 @@ import {
     Icon
 } from 'native-base';
 import {withNavigation} from 'react-navigation';
+import commonColor from '../../native-base-theme/variables/commonColor';
 
 class TextList extends React.Component {
 
@@ -24,7 +25,7 @@ class TextList extends React.Component {
                           <Text>{text.title}</Text>
                       </Left>
                       <Right>
-                          <Icon name="chevron-right" type="FontAwesome"/>
+                          <Icon name="chevron-right" style={{ fontSize: 20}} type="Feather"/>
                       </Right>
                     </ListItem>
                 );

@@ -10,6 +10,7 @@ import TextScreen from "../screens/TextScreen";
 import {Image} from 'react-native';
 import RightNav from './RightNav';
 import ContactScreen from "../screens/ContactScreen";
+import VideoScreen from "../screens/VideoScreen";
 
 const logo = require('../../assets/icon.png');
 const Logo = () => {
@@ -46,6 +47,10 @@ const HomeStackNavigator = createStackNavigator(
 
         Text: {
             screen: TextScreen,
+        },
+
+        Video: {
+            screen: VideoScreen,
         },
 
         Landing: {

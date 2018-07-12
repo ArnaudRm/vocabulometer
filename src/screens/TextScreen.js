@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {fetchSingleText} from '../actions';
 import {connect} from 'react-redux';
-import {H1, Text} from 'native-base';
-import {View, ScrollView,} from 'react-native';
+import {View} from 'react-native';
 import Circle from 'react-native-progress/Circle';
 import platform from "../../native-base-theme/variables/platform";
 import PageSwiper from '../components/PageSwiper';
@@ -26,7 +25,6 @@ class TextScreen extends Component {
 
     componentDidMount() {
         const text = this.props.navigation.state.params;
-        //console.log(text._id);
         this.props.fetchSingleText(this.props.token, text.uri);
     }
 
@@ -53,7 +51,7 @@ class TextScreen extends Component {
                 let charactersRemaining = paragraph.length;
                 while(charactersRemaining > maxParagraphLength){
 
-                 /*   if(splittedParagraph[maxParagraphLength] !== ' ' || splittedParagraph[maxParagraphLength] !== '.'){
+                    if(splittedParagraph[maxParagraphLength] !== ' ' || splittedParagraph[maxParagraphLength] !== '.'){
                         let isNextCharacterBlankOrDot = false;
                         let i = maxParagraphLength + 1;
                         while(!isNextCharacterBlankOrDot){
@@ -66,11 +64,11 @@ class TextScreen extends Component {
                             }
                             i++;
                         }
-                    }else{*/
+                    }else{
                         paragraphs.push(splittedParagraph.substr(0,700));
                         splittedParagraph = splittedParagraph.slice(700);
                         charactersRemaining -= 700;
-                    //}
+                    }
                 }
                 paragraphs.push(splittedParagraph);
             }else{

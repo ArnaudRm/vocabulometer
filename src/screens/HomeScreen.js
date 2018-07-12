@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Platform} from 'react-native';
+import {StyleSheet, Platform, Dimensions} from 'react-native';
 import {
     Button,
     Text,
@@ -15,6 +15,7 @@ import {
     CardItem,
     Body,
 } from 'native-base';
+import VideosCarousel from '../components/VideosCarousel';
 import {fetchUserStats} from "../actions";
 import {connect} from "react-redux";
 import AppSpinner from "../components/AppSpinner";
@@ -95,7 +96,6 @@ class HomeScreen extends React.Component {
                             </Grid>
                         </CardItem>
                         <CardItem>
-
                             <Grid style={{minHeight: 80}}>
                                 <Col size={40}>
                                     <Button
@@ -105,23 +105,30 @@ class HomeScreen extends React.Component {
                                         <Text>My profile</Text>
                                     </Button>
                                 </Col>
-                                <Col size={50}>
+                                <Col size={60}>
                                     <Text style={styles.txtStat}>Score: <Text
                                         style={{fontWeight: 'bold'}}>10</Text> points</Text>
                                     <Text style={styles.txtStat}>
                                         Words read:
                                         <Text
                                             style={{fontWeight: 'bold'}}>
-                                            {this.props.user.wordsRead ? this.props.user.wordsRead.days[0].count : 0}
+                                            {this.props.user.wordsRead.days[0] ? this.props.user.wordsRead.days[0].count : 0}
                                         </Text>
                                     </Text>
-                                    <Text style={styles.txtStat}>New words encountered: <Text
-                                        style={{fontWeight: 'bold'}}>{this.props.user.newWordsRead.days[0].count}</Text></Text>
-                                    <Text style={styles.txtStat}>New recently read words: <Text
-                                        style={{fontWeight: 'bold'}}>{this.props.user.newRecentWordsRead.words.length}</Text></Text>
+                                    <Text style={styles.txtStat}>
+                                        New words encountered:
+                                        <Text style={{fontWeight: 'bold'}}>
+                                            {this.props.user.newWordsRead.days[0] ? this.props.user.newWordsRead.days[0].count : 0}
+                                        </Text>
+                                    </Text>
+                                    <Text style={styles.txtStat}>
+                                        New recently read words:
+                                        <Text style={{fontWeight: 'bold'}}>
+                                            {this.props.user.newRecentWordsRead.words.length}
+                                        </Text>
+                                    </Text>
                                 </Col>
                             </Grid>
-
                         </CardItem>
                     </Card>
 
@@ -130,7 +137,7 @@ class HomeScreen extends React.Component {
                         <CardItem>
                             <Grid style={{minHeight: 60}}>
                                 <Row size={10}>
-                                    <Text style={styles.labelGray}>RECOMMANDATIONS</Text>
+                                    <Text style={styles.labelGray}>TEXTS</Text>
                                 </Row>
                                 <Row size={20} paddingBottom={10} paddingTop={10}>
                                     <H1>Train your english skills with vocabulometer !</H1>
@@ -179,6 +186,47 @@ class HomeScreen extends React.Component {
                             </Button>
                         </CardItem>
                     </Card>
+                    <Grid>
+                        <Content>
+                            <Card paddingTop={20}>
+                                <CardItem>
+                                    <Grid style={{minHeight: 60}}>
+                                        <Row size={10}>
+                                            <Text style={styles.labelGray}>VIDEOS</Text>
+                                        </Row>
+                                        <Row size={20} paddingBottom={10} paddingTop={10}>
+                                            <H1>Some videos</H1>
+                                        </Row>
+                                    </Grid>
+                                </CardItem>
+                                <CardItem>
+                                    <VideosCarousel
+                                        layout={'tinder'}
+                                        videos={
+                                            [
+                                                {
+                                                    id: 'CwMevU8PTmg',
+                                                    uri: 'https://www.youtube.com/watch?v=ruy7cjTNG6U',
+                                                    title: 'Super video bro',
+                                                },
+                                                {
+                                                    id: 'UyoYf7rZVGI',
+                                                    uri: 'https://www.youtube.com/watch?v=UyoYf7rZVGI',
+                                                    title: 'Super video bro',
+                                                },
+                                                {
+                                                    id: '2sML2bq_WGw',
+                                                    uri: 'https://www.youtube.com/watch?v=2sML2bq_WGw',
+                                                    title: 'Super video bro',
+                                                },
+                                            ]
+                                        }
+                                    />
+                                </CardItem>
+                            </Card>
+                        </Content>
+                    </Grid>
+
                 </Content>
             </Container>
         );

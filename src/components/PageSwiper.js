@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     },
 });
 
-class DeckSwiperAdvancedExample extends Component {
+class PageSwiper extends Component {
 
     state = {
         cardIndex: 0
@@ -106,4 +106,4 @@ const mapStateToProps = ({user}) => {
     return {token};
 };
 
-export default connect(mapStateToProps, {sendWordsRead})(DeckSwiperAdvancedExample);
+export default connect(mapStateToProps, {sendWordsRead})(PageSwiper);

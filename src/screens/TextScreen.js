@@ -3,9 +3,8 @@ import {fetchSingleText} from '../actions';
 import {connect} from 'react-redux';
 import {View} from 'react-native';
 import Circle from 'react-native-progress/Circle';
-import platform from "../../native-base-theme/variables/platform";
+import platform from '../../native-base-theme/variables/platform';
 import PageSwiper from '../components/PageSwiper';
-import BackHandlerWrapper from '../components/BackHandlerWrapper';
 
 const styles = {
     spinnerContainer: {

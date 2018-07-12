@@ -1,27 +1,23 @@
 import React from 'react'
 import {View} from 'react-native';
-import {BarChart, Grid, YAxis, XAxis} from 'react-native-svg-charts'
+import {
+    BarChart,
+    Grid,
+    YAxis,
+    XAxis,
+} from 'react-native-svg-charts';
 
-class BarChartExample extends React.PureComponent {
+class WordsBarChart extends React.PureComponent {
 
     render() {
-
-        const data = [50, 30, 40, 200];
-        const dates = [new Date('Jun 29 2018'), new Date('Jul 01 2018'), new Date('Jun 05 2018'), new Date('Jun 06 2018')];
-
-        const datesStrings = dates.map((date) => {
-            return date.toLocaleDateString('fr-FR');
-        });
 
         const axesSvg = { fontSize: 10, fill: 'grey' };
         const verticalContentInset = { top: 10, bottom: 10 };
         const xAxisHeight = 30;
 
-        console.log('BARCHART PROPS',this.props);
         return (
             <View style={{ height: 200, padding: 20, flexDirection: 'row', backgroundColor: 'white'}}>
                 <YAxis
-                    //data={data}
                     data={this.props.data}
                     style={{ marginBottom: xAxisHeight }}
                     contentInset={verticalContentInset}
@@ -42,7 +38,6 @@ class BarChartExample extends React.PureComponent {
                         formatLabel={(value, index) => this.props.dates[index].toLocaleDateString('fr-FR') }
                         contentInset={{ top:10 , left: 30, right: 30}}
                         svg={{
-                           // fill: 'rgb(111, 185, 143)' ,
                             fontSize: 8,
                             fontWeight: 'bold',
                             rotation: 15,
@@ -61,4 +56,4 @@ class BarChartExample extends React.PureComponent {
     }
 }
 
-export default BarChartExample;
+export default WordsBarChart;

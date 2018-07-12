@@ -3,14 +3,11 @@ import {
     Text,
     List,
     ListItem,
-    Body,
     Right,
-    Button,
     Left,
     Icon
 } from 'native-base';
 import {withNavigation} from 'react-navigation';
-import commonColor from '../../native-base-theme/variables/commonColor';
 
 class TextList extends React.Component {
 

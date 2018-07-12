@@ -6,8 +6,7 @@ import {
     FETCH_USER_INFOS,
 } from '../actions/types';
 import {NavigationActions} from 'react-navigation';
-
-const BASE_URL = "http://vocabulometer.herokuapp.com/api";
+import { BASE_URL} from "../constants";
 
 const navigateToHome =
     NavigationActions.navigate({
@@ -19,7 +18,7 @@ const redirectLogin =
         routeName: 'Login',
     });
 
-export const login = ({username, password}) => { // TODO get token in redux in component that calls this fetch and pass is as an argument
+export const login = ({username, password}) => {
 
     const credentials = {
         username,

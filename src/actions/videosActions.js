@@ -3,8 +3,7 @@ import {
     FETCH_VIDEOS_FAIL,
     FETCH_VIDEOS_SUCCESS,
 } from "./types";
-
-const BASE_URL = "http://vocabulometer.herokuapp.com/api";
+import { BASE_URL} from "../constants";
 
 export const fetchVideos = (userToken, limit = 20) => {
 

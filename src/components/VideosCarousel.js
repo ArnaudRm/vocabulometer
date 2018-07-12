@@ -7,7 +7,7 @@ import {withNavigation} from 'react-navigation';
 
 class VideosCarousel extends Component {
 
-    renderItem = ({item, index}) => {
+    renderItem = ({item}) => {
         return (
             <View>
                 <Image

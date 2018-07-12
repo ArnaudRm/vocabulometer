@@ -1,6 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
-import { Container, Content } from 'native-base';
+import {
+    Container,
+    Content,
+} from 'native-base';
 import VideoPlayer from '../components/VideoPlayer';
 import BackHandlerWrapper from '../components/BackHandlerWrapper';
 

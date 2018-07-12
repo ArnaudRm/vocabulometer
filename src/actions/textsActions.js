@@ -6,8 +6,7 @@ import {
     FETCH_SINGLE_TEXT_FAIL,
     FETCH_SINGLE_TEXT_SUCCESS,
 } from '../actions/types';
-
-const BASE_URL = "http://vocabulometer.herokuapp.com/api";
+import { BASE_URL} from "../constants";
 
 export const fetchTexts = (userToken, difficulty, limit = 20) => {
 

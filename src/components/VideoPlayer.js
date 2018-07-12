@@ -1,7 +1,10 @@
 import React from 'react';
-import {Dimensions, WebView, View} from 'react-native';
+import {
+    Dimensions,
+    WebView,
+} from 'react-native';
 import {Container} from 'native-base';
-import AppSpinner from "./AppSpinner";
+import AppSpinner from './AppSpinner';
 
 export default class VideoPlayer extends React.Component {
 

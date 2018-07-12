@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {BackHandler, View} from "react-native";
+import {BackHandler} from "react-native";
 import {withNavigation} from "react-navigation";
 
 class BackHandlerWrapper extends Component {
@@ -13,7 +13,7 @@ class BackHandlerWrapper extends Component {
     }
 
     handleBackPress = () => {
-        this.props.navigation.goBack(); // works best when the goBack is async
+        this.props.navigation.goBack();
         return true;
     };
 

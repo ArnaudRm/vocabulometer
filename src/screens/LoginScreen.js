@@ -1,12 +1,8 @@
 import React from 'react';
 import {
-    Container,
     Content,
     Text,
     Button,
-    Grid,
-    Row,
-    Spinner,
     StyleProvider,
 } from 'native-base';
 import Circle from 'react-native-progress/Circle';
@@ -17,8 +13,6 @@ import {
     StyleSheet,
     Keyboard,
     ImageBackground,
-    View,
-    ScrollView,
     KeyboardAvoidingView,
 } from 'react-native';
 import {connect} from 'react-redux';
@@ -57,8 +51,6 @@ const styles = StyleSheet.create({
     },
 });
 
-
-
 class LoginScreen extends React.Component {
 
     onSubmit = ({username, password}) => {
@@ -74,8 +66,6 @@ class LoginScreen extends React.Component {
     }
 
     render() {
-
-        console.log(platform);
         return (
             <StyleProvider style={getTheme(platform)}>
 

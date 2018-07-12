@@ -1,5 +1,8 @@
 import React from 'react';
-import {StyleSheet, Image, BackHandler} from 'react-native';
+import {
+    StyleSheet,
+    Image,
+} from 'react-native';
 import {
     Text,
     Container,
@@ -7,9 +10,7 @@ import {
     Card,
     CardItem,
     Grid,
-    Col,
     Row,
-    Button,
     H1,
     List,
     ListItem,
@@ -47,7 +48,6 @@ const styles = StyleSheet.create({
 });
 
 export default class ContactScreen extends React.Component {
-
 
     render() {
         return (

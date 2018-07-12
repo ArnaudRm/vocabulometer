@@ -1,16 +1,22 @@
 import React from 'react';
-import {StyleSheet, View, ScrollView, Text} from 'react-native';
+import {
+    StyleSheet,
+    View,
+    ScrollView,
+    Text,
+} from 'react-native';
+import {
+    H1,
+    List,
+    ListItem,
+} from 'native-base';
 import BarChart from '../components/BarChart';
-import {Container, Content, H1, Grid, Col, List, ListItem, Card, CardItem} from 'native-base';
-import {fetchUserStats, fetchVideos} from "../actions";
-import {connect} from "react-redux";
+import {connect} from 'react-redux';
 import BackHandlerWrapper from '../components/BackHandlerWrapper';
 
 class StatsScreen extends React.Component {
 
     buildDates(arr) {
-        console.log('base arr 0 ',arr);
-
         const dates = [];
         const data = [];
         let final = [0, 0];
@@ -22,17 +28,14 @@ class StatsScreen extends React.Component {
                 else
                     return acc;
             });
-
-            arr = arr.days
-            console.log('base arr 1',arr);
-
+            arr = arr.days;
             const minDate = new Date(maxDate._id) - 24 * 3600 * 1000 * 7;
             arr.sort((a, b) => new Date(a) - new Date(b));
             for (let i = 0; i <= 7; i++) {
                 dates[i] = new Date(minDate + 24 * 3600 * 1000 * i);
 
                 console.log(dates[i]);
-                data[i] = arr.find((val) => new Date(val._id).getTime() === dates[i].getTime() ) || {count: 0};
+                data[i] = arr.find((val) => new Date(val._id).getTime() === dates[i].getTime()) || {count: 0};
             }
             final = data.map((v) => v.count);
         } else {
@@ -41,7 +44,6 @@ class StatsScreen extends React.Component {
                 dates[i] = new Date(timestampDate);
             }
         }
-
         return {
             dates,
             final,

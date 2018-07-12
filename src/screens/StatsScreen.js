@@ -74,7 +74,7 @@ class StatsScreen extends React.Component {
                             ? <H1 style={{paddingHorizontal: 8, paddingBottom: 8}}>New recents words read</H1>
                             : null
                     }
-                    <List>build
+                    <List>
                         {
                             newRecentWordsRead.words.slice(0, 12).map((item, index) => {
                                 return (

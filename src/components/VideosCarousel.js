@@ -33,10 +33,12 @@ class VideosCarousel extends Component {
                 </Text>
                 <Button
                     full
-                    primary
+                    style={{
+                        backgroundColor: '#6FB98F'
+                    }}
                     onPress={() => this.props.navigation.navigate('Video', item)}
                 >
-                    <Text>Voir la vidéo</Text>
+                    <Text>WHATCH IT</Text>
                     <Icon name="play" type="Feather"/>
                 </Button>
             </View>

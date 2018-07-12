@@ -159,7 +159,7 @@ class HomeScreen extends React.Component {
                                     type="FontAwesome"
                                     name='thermometer-empty'
                                 />
-                                <Text>Easy</Text>
+                                <Text>Revise</Text>
                             </Button>
                         </CardItem>
                         <CardItem style={styles.paddingButton}>
@@ -172,7 +172,7 @@ class HomeScreen extends React.Component {
                                     type="FontAwesome"
                                     name='thermometer-half'
                                 />
-                                <Text>Recommended</Text>
+                                <Text>Easy</Text>
                             </Button>
                         </CardItem>
                         <CardItem style={styles.paddingButton}>

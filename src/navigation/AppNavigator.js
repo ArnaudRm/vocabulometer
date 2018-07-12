@@ -1,22 +1,19 @@
-import React from 'react';
-import { createStackNavigator} from 'react-navigation';
+import React, {Component} from 'react';
+import {createStackNavigator} from 'react-navigation';
 import HomeScreen from '../screens/HomeScreen'
-import OtherScreen from '../screens/OtherScreen';
-import {Image} from 'react-native';
-import { reduxifyNavigator } from 'react-navigation-redux-helpers';
-import { connect } from 'react-redux';
+import EasyTextsScreen from '../screens/EasyTextsScreen';
+import HardTextsScreen from '../screens/HardTextsScreen';
+import RecommendedTextsScreen from '../screens/RecommendedTextsScreen';
+import LandingScreen from '../screens/LandingScreen';
+import LoginScreen from "../screens/LoginScreen";
+import TextScreen from "../screens/TextScreen";
+import RightNav from './RightNav';
+import ContactScreen from "../screens/ContactScreen";
+import VideoScreen from "../screens/VideoScreen";
+import StatsScreen from "../screens/StatsScreen";
+import Logo from './Logo';
+import BackButton from './BackButton';
 
-const logo = require('../../assets/icon.png');
-
-
-const Logo = () => {
-    return (
-        <Image
-            source={logo}
-            style={{height: 30, width: 30}}
-        />
-    )
-};
 
 const HomeStackNavigator = createStackNavigator(
     {
@@ -27,19 +24,56 @@ const HomeStackNavigator = createStackNavigator(
             }
         },
 
-        Other: {
-            screen: OtherScreen,
+        EasyTexts: {
+            screen: EasyTextsScreen,
+        },
+
+        HardTexts: {
+            screen: HardTextsScreen,
+        },
+
+        RecommendedTexts: {
+            screen: RecommendedTextsScreen,
+        },
+
+        Text: {
+            screen: TextScreen,
+        },
+
+        Video: {
+            screen: VideoScreen,
+        },
+
+        Landing: {
+            screen: LandingScreen,
+        },
+
+        Login: {
+            screen: LoginScreen,
+            navigationOptions: {
+                header: null
+            }
+        },
+
+        Stats: {
+            screen: StatsScreen,
+        },
+
+        Contact: {
+            screen: ContactScreen,
         },
     },
 
     //GLOBAL CONFIG FOR ALL SCREENS
     {
-        initialRouteName: 'Main',
+        initialRouteName: 'Landing',
         navigationOptions: {
+            headerRight: <RightNav/>,
             headerTitle: <Logo/>, // Logo instead of header title
+            headerLeft: <BackButton/>,
             headerStyle: {
-                backgroundColor: '#FFF' // Header black BG color
-            }
+                backgroundColor: '#FFF'
+            },
         }
     },
 );

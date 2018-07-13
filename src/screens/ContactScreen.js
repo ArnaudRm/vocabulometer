@@ -2,6 +2,7 @@ import React from 'react';
 import {
     StyleSheet,
     Image,
+    Linking,
 } from 'react-native';
 import {
     Text,
@@ -130,15 +131,19 @@ export default class ContactScreen extends React.Component {
                             </CardItem>
                             <CardItem>
                                 <Grid>
-                                    <Row>
+                                    <Row onPress={ ()=> Linking.openURL('https://www.u-bordeaux.fr/') }>
                                         <Image resizeMode={'contain'} source={require('../../assets/bordeaux.png')}
                                                style={styles.imgSize}/>
                                     </Row>
-                                    <Row>
+                                    <Row onPress={ ()=> Linking.openURL('https://www.labri.fr/') }>
+                                        <Image resizeMode={'contain'} source={require('../../assets/labri.png')}
+                                                style={styles.imgSize}/>
+                                    </Row>
+                                    <Row onPress={ ()=> Linking.openURL('http://www.m.cs.osakafu-u.ac.jp/index-e.html') }>
                                         <Image resizeMode={'contain'} source={require('../../assets/imlab_logo.png')}
                                                style={styles.imgSize}/>
                                     </Row>
-                                    <Row>
+                                    <Row onPress={ ()=> Linking.openURL('http://www.osakafu-u.ac.jp/en/') }>
                                         <Image resizeMode={'contain'} source={require('../../assets/opu_logo.png')}
                                                style={styles.imgSize}/>
                                     </Row>
